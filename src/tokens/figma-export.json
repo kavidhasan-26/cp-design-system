@@ -1,0 +1,909 @@
+{
+  "styles": {
+    "colors": [],
+    "textStyles": [
+      {
+        "name": "Heading 1",
+        "token": "heading-1",
+        "type": "text",
+        "fontFamily": "Inter",
+        "fontWeight": "700",
+        "fontSize": "40px",
+        "letterSpacing": "0%"
+      },
+      {
+        "name": "Heading 2",
+        "token": "heading-2",
+        "type": "text",
+        "fontFamily": "Inter",
+        "fontWeight": "700",
+        "fontSize": "32px",
+        "letterSpacing": "0%"
+      },
+      {
+        "name": "Heading 3",
+        "token": "heading-3",
+        "type": "text",
+        "fontFamily": "Inter",
+        "fontWeight": "700",
+        "fontSize": "24px",
+        "letterSpacing": "0%"
+      },
+      {
+        "name": "Heading 5",
+        "token": "heading-5",
+        "type": "text",
+        "fontFamily": "Inter",
+        "fontWeight": "700",
+        "fontSize": "18px",
+        "letterSpacing": "-1%"
+      },
+      {
+        "name": "Numeral 1",
+        "token": "numeral-1",
+        "type": "text",
+        "fontFamily": "Inter",
+        "fontWeight": "500",
+        "fontSize": "40px",
+        "letterSpacing": "0%"
+      },
+      {
+        "name": "Numeral 2",
+        "token": "numeral-2",
+        "type": "text",
+        "fontFamily": "Inter",
+        "fontWeight": "500",
+        "fontSize": "32px",
+        "letterSpacing": "0%"
+      },
+      {
+        "name": "Numeral 3",
+        "token": "numeral-3",
+        "type": "text",
+        "fontFamily": "Inter",
+        "fontWeight": "400",
+        "fontSize": "24px",
+        "letterSpacing": "0%"
+      },
+      {
+        "name": "Label 1",
+        "token": "label-1",
+        "type": "text",
+        "fontFamily": "Inter",
+        "fontWeight": "500",
+        "fontSize": "16px",
+        "letterSpacing": "0%"
+      },
+      {
+        "name": "Label 2",
+        "token": "label-2",
+        "type": "text",
+        "fontFamily": "Inter",
+        "fontWeight": "500",
+        "fontSize": "15px",
+        "letterSpacing": "0%"
+      },
+      {
+        "name": "Label 3",
+        "token": "label-3",
+        "type": "text",
+        "fontFamily": "Inter",
+        "fontWeight": "500",
+        "fontSize": "14px",
+        "letterSpacing": "0%"
+      },
+      {
+        "name": "Label 4",
+        "token": "label-4",
+        "type": "text",
+        "fontFamily": "Inter",
+        "fontWeight": "400",
+        "fontSize": "13px",
+        "letterSpacing": "0%"
+      },
+      {
+        "name": "Label 5",
+        "token": "label-5",
+        "type": "text",
+        "fontFamily": "Inter",
+        "fontWeight": "500",
+        "fontSize": "12px",
+        "letterSpacing": "0%"
+      },
+      {
+        "name": "Body m1",
+        "token": "body-m1",
+        "type": "text",
+        "fontFamily": "Inter",
+        "fontWeight": "500",
+        "fontSize": "16px",
+        "letterSpacing": "0%"
+      },
+      {
+        "name": "Body m2",
+        "token": "body-m2",
+        "type": "text",
+        "fontFamily": "Inter",
+        "fontWeight": "500",
+        "fontSize": "15px",
+        "letterSpacing": "0%"
+      },
+      {
+        "name": "Body m3",
+        "token": "body-m3",
+        "type": "text",
+        "fontFamily": "Inter",
+        "fontWeight": "500",
+        "fontSize": "14px",
+        "letterSpacing": "0%"
+      },
+      {
+        "name": "Body m4",
+        "token": "body-m4",
+        "type": "text",
+        "fontFamily": "Inter",
+        "fontWeight": "500",
+        "fontSize": "13px",
+        "letterSpacing": "0%"
+      },
+      {
+        "name": "Body r1",
+        "token": "body-r1",
+        "type": "text",
+        "fontFamily": "Inter",
+        "fontWeight": "400",
+        "fontSize": "16px",
+        "letterSpacing": "0%"
+      },
+      {
+        "name": "Body r2",
+        "token": "body-r2",
+        "type": "text",
+        "fontFamily": "Inter",
+        "fontWeight": "400",
+        "fontSize": "15px",
+        "letterSpacing": "0%"
+      },
+      {
+        "name": "Body r3",
+        "token": "body-r3",
+        "type": "text",
+        "fontFamily": "Inter",
+        "fontWeight": "400",
+        "fontSize": "14px",
+        "letterSpacing": "0%"
+      },
+      {
+        "name": "Body r4",
+        "token": "body-r4",
+        "type": "text",
+        "fontFamily": "Inter",
+        "fontWeight": "400",
+        "fontSize": "13px",
+        "letterSpacing": "0%"
+      },
+      {
+        "name": "Body r5",
+        "token": "body-r5",
+        "type": "text",
+        "fontFamily": "Inter",
+        "fontWeight": "400",
+        "fontSize": "12px",
+        "letterSpacing": "0%"
+      },
+      {
+        "name": "body r6",
+        "token": "body-r6",
+        "type": "text",
+        "fontFamily": "Inter",
+        "fontWeight": "400",
+        "fontSize": "10px",
+        "letterSpacing": "0%"
+      }
+    ],
+    "effectStyles": [],
+    "gridStyles": []
+  },
+  "collections": {
+    "Primitives": {
+      "id": "VariableCollectionId:4:2",
+      "modes": [
+        {
+          "id": "4:0",
+          "name": "Mode 1"
+        }
+      ],
+      "variables": {
+        "colors": [
+          {
+            "name": "Purple/Purple 10",
+            "token": "purple-purple-10",
+            "type": "color",
+            "value": "#dcdbeb"
+          },
+          {
+            "name": "Purple/Purple 20",
+            "token": "purple-purple-20",
+            "type": "color",
+            "value": "#b9b7d8"
+          },
+          {
+            "name": "Purple/Purple 30",
+            "token": "purple-purple-30",
+            "type": "color",
+            "value": "#736fb2"
+          },
+          {
+            "name": "Purple/Purple 40",
+            "token": "purple-purple-40",
+            "type": "color",
+            "value": "#514c9f"
+          },
+          {
+            "name": "Purple/Purple 50",
+            "token": "purple-purple-50",
+            "type": "color",
+            "value": "#403c7f"
+          },
+          {
+            "name": "Purple/Purple 60",
+            "token": "purple-purple-60",
+            "type": "color",
+            "value": "#302d5f"
+          },
+          {
+            "name": "Purple/Purple 70",
+            "token": "purple-purple-70",
+            "type": "color",
+            "value": "#201e3f"
+          },
+          {
+            "name": "Purple/Purple 80",
+            "token": "purple-purple-80",
+            "type": "color",
+            "value": "#100f1f"
+          },
+          {
+            "name": "Neutral/Neutral 10",
+            "token": "neutral-neutral-10",
+            "type": "color",
+            "value": "#ffffff"
+          },
+          {
+            "name": "Neutral/Neutral 15",
+            "token": "neutral-neutral-15",
+            "type": "color",
+            "value": "#f3f3f3"
+          },
+          {
+            "name": "Neutral/Neutral 35",
+            "token": "neutral-neutral-35",
+            "type": "color",
+            "value": "#acacac"
+          },
+          {
+            "name": "Neutral/Neutral 40",
+            "token": "neutral-neutral-40",
+            "type": "color",
+            "value": "#6c6c6c"
+          },
+          {
+            "name": "Neutral/Neutral 50",
+            "token": "neutral-neutral-50",
+            "type": "color",
+            "value": "#303030"
+          },
+          {
+            "name": "Neutral/Neutral 60",
+            "token": "neutral-neutral-60",
+            "type": "color",
+            "value": "#262626"
+          },
+          {
+            "name": "Neutral/Neutral 70",
+            "token": "neutral-neutral-70",
+            "type": "color",
+            "value": "#1c1c1c"
+          },
+          {
+            "name": "Neutral/Neutral 80",
+            "token": "neutral-neutral-80",
+            "type": "color",
+            "value": "#090909"
+          },
+          {
+            "name": "Green/Green 10",
+            "token": "green-green-10",
+            "type": "color",
+            "value": "#d6ecd7"
+          },
+          {
+            "name": "Green/Green 20",
+            "token": "green-green-20",
+            "type": "color",
+            "value": "#aedab0"
+          },
+          {
+            "name": "Green/Green 30",
+            "token": "green-green-30",
+            "type": "color",
+            "value": "#86c888"
+          },
+          {
+            "name": "Green/Green 40",
+            "token": "green-green-40",
+            "type": "color",
+            "value": "#5eb661"
+          },
+          {
+            "name": "Green/Green 50",
+            "token": "green-green-50",
+            "type": "color",
+            "value": "#36a43a"
+          },
+          {
+            "name": "Green/Green 60",
+            "token": "green-green-60",
+            "type": "color",
+            "value": "#2b832e"
+          },
+          {
+            "name": "Green/Green 70",
+            "token": "green-green-70",
+            "type": "color",
+            "value": "#206222"
+          },
+          {
+            "name": "Green/Green 80",
+            "token": "green-green-80",
+            "type": "color",
+            "value": "#154117"
+          },
+          {
+            "name": "Red/Red 10",
+            "token": "red-red-10",
+            "type": "color",
+            "value": "#fad4d4"
+          },
+          {
+            "name": "Red/Red 20",
+            "token": "red-red-20",
+            "type": "color",
+            "value": "#f6aaaa"
+          },
+          {
+            "name": "Red/Red 30",
+            "token": "red-red-30",
+            "type": "color",
+            "value": "#f18080"
+          },
+          {
+            "name": "Red/Red 40",
+            "token": "red-red-40",
+            "type": "color",
+            "value": "#ed5656"
+          },
+          {
+            "name": "Red/Red 50",
+            "token": "red-red-50",
+            "type": "color",
+            "value": "#e92c2c"
+          },
+          {
+            "name": "Red/Red 60",
+            "token": "red-red-60",
+            "type": "color",
+            "value": "#ba2323"
+          },
+          {
+            "name": "Red/Red 70",
+            "token": "red-red-70",
+            "type": "color",
+            "value": "#8b1a1a"
+          },
+          {
+            "name": "Red/Red 80",
+            "token": "red-red-80",
+            "type": "color",
+            "value": "#5d1111"
+          },
+          {
+            "name": "Yellow/Yellow 10",
+            "token": "yellow-yellow-10",
+            "type": "color",
+            "value": "#fbf6cc"
+          },
+          {
+            "name": "Yellow/Yellow 20",
+            "token": "yellow-yellow-20",
+            "type": "color",
+            "value": "#f8ed99"
+          },
+          {
+            "name": "Yellow/Yellow 30",
+            "token": "yellow-yellow-30",
+            "type": "color",
+            "value": "#f5e466"
+          },
+          {
+            "name": "Yellow/Yellow 40",
+            "token": "yellow-yellow-40",
+            "type": "color",
+            "value": "#f2db33"
+          },
+          {
+            "name": "Yellow/Yellow 50",
+            "token": "yellow-yellow-50",
+            "type": "color",
+            "value": "#efd200"
+          },
+          {
+            "name": "Yellow/Yellow 60",
+            "token": "yellow-yellow-60",
+            "type": "color",
+            "value": "#bfa800"
+          },
+          {
+            "name": "Yellow/Yellow 70",
+            "token": "yellow-yellow-70",
+            "type": "color",
+            "value": "#8f7e00"
+          },
+          {
+            "name": "Yellow/Yellow 80",
+            "token": "yellow-yellow-80",
+            "type": "color",
+            "value": "#5f5400"
+          },
+          {
+            "name": "Orange/Orange 10",
+            "token": "orange-orange-10",
+            "type": "color",
+            "value": "#ffe5d6"
+          },
+          {
+            "name": "Orange/Orange 20",
+            "token": "orange-orange-20",
+            "type": "color",
+            "value": "#ffccad"
+          },
+          {
+            "name": "Orange/Orange 30",
+            "token": "orange-orange-30",
+            "type": "color",
+            "value": "#ffb384"
+          },
+          {
+            "name": "Orange/Orange 40",
+            "token": "orange-orange-40",
+            "type": "color",
+            "value": "#ff9a5b"
+          },
+          {
+            "name": "Orange/Orange 50",
+            "token": "orange-orange-50",
+            "type": "color",
+            "value": "#ff8132"
+          },
+          {
+            "name": "Orange/Orange 60",
+            "token": "orange-orange-60",
+            "type": "color",
+            "value": "#cc6728"
+          },
+          {
+            "name": "Orange/Orange 70",
+            "token": "orange-orange-70",
+            "type": "color",
+            "value": "#994d1e"
+          },
+          {
+            "name": "Orange/Orange 80",
+            "token": "orange-orange-80",
+            "type": "color",
+            "value": "#663314"
+          },
+          {
+            "name": "Blue/Blue 10",
+            "token": "blue-blue-10",
+            "type": "color",
+            "value": "#d5e2f6"
+          },
+          {
+            "name": "Blue/Blue 20",
+            "token": "blue-blue-20",
+            "type": "color",
+            "value": "#abc6ed"
+          },
+          {
+            "name": "Blue/Blue 30",
+            "token": "blue-blue-30",
+            "type": "color",
+            "value": "#81aae4"
+          },
+          {
+            "name": "Blue/Blue 40",
+            "token": "blue-blue-40",
+            "type": "color",
+            "value": "#578edb"
+          },
+          {
+            "name": "Blue/Blue 50",
+            "token": "blue-blue-50",
+            "type": "color",
+            "value": "#2e72d2"
+          },
+          {
+            "name": "Blue/Blue 60",
+            "token": "blue-blue-60",
+            "type": "color",
+            "value": "#245ba8"
+          },
+          {
+            "name": "Blue/Blue 70",
+            "token": "blue-blue-70",
+            "type": "color",
+            "value": "#1b447e"
+          },
+          {
+            "name": "Blue/Blue 80",
+            "token": "blue-blue-80",
+            "type": "color",
+            "value": "#122d54"
+          },
+          {
+            "name": "Neutral/Neutral 20",
+            "token": "neutral-neutral-20",
+            "type": "color",
+            "value": "#f4f4f4"
+          },
+          {
+            "name": "Neutral/Neutral 25",
+            "token": "neutral-neutral-25",
+            "type": "color",
+            "value": "#c5c5c5"
+          },
+          {
+            "name": "Neutral/Neutral 30",
+            "token": "neutral-neutral-30",
+            "type": "color",
+            "value": "#c9c9c9"
+          },
+          {
+            "name": "Neutral/Neutral 45",
+            "token": "neutral-neutral-45",
+            "type": "color",
+            "value": "#666666"
+          }
+        ],
+        "numbers": [],
+        "strings": [],
+        "booleans": []
+      }
+    },
+    "Radius": {
+      "id": "VariableCollectionId:11:2",
+      "modes": [
+        {
+          "id": "11:0",
+          "name": "Mode 1"
+        }
+      ],
+      "variables": {
+        "colors": [],
+        "numbers": [
+          {
+            "name": "radius-0",
+            "token": "radius-0",
+            "type": "float",
+            "value": 0
+          },
+          {
+            "name": "radius-1",
+            "token": "radius-1",
+            "type": "float",
+            "value": 2
+          },
+          {
+            "name": "radius-2",
+            "token": "radius-2",
+            "type": "float",
+            "value": 4
+          },
+          {
+            "name": "radius-3",
+            "token": "radius-3",
+            "type": "float",
+            "value": 8
+          },
+          {
+            "name": "radius-4",
+            "token": "radius-4",
+            "type": "float",
+            "value": 12
+          },
+          {
+            "name": "radius-5",
+            "token": "radius-5",
+            "type": "float",
+            "value": 16
+          },
+          {
+            "name": "radius-x",
+            "token": "radius-x",
+            "type": "float",
+            "value": 999
+          }
+        ],
+        "strings": [],
+        "booleans": []
+      }
+    },
+    "Spacing": {
+      "id": "VariableCollectionId:11:3",
+      "modes": [
+        {
+          "id": "11:1",
+          "name": "Mode 1"
+        }
+      ],
+      "variables": {
+        "colors": [],
+        "numbers": [
+          {
+            "name": "Space-0",
+            "token": "space-0",
+            "type": "float",
+            "value": 0
+          },
+          {
+            "name": "Space-1",
+            "token": "space-1",
+            "type": "float",
+            "value": 2
+          },
+          {
+            "name": "Space-2",
+            "token": "space-2",
+            "type": "float",
+            "value": 4
+          },
+          {
+            "name": "Space-3",
+            "token": "space-3",
+            "type": "float",
+            "value": 6
+          },
+          {
+            "name": "Space-4",
+            "token": "space-4",
+            "type": "float",
+            "value": 8
+          },
+          {
+            "name": "Space-5",
+            "token": "space-5",
+            "type": "float",
+            "value": 10
+          },
+          {
+            "name": "Space-6",
+            "token": "space-6",
+            "type": "float",
+            "value": 12
+          },
+          {
+            "name": "Space-7",
+            "token": "space-7",
+            "type": "float",
+            "value": 14
+          },
+          {
+            "name": "Space-8",
+            "token": "space-8",
+            "type": "float",
+            "value": 16
+          },
+          {
+            "name": "Space-9",
+            "token": "space-9",
+            "type": "float",
+            "value": 20
+          },
+          {
+            "name": "Space-10",
+            "token": "space-10",
+            "type": "float",
+            "value": 24
+          },
+          {
+            "name": "Space-11",
+            "token": "space-11",
+            "type": "float",
+            "value": 32
+          },
+          {
+            "name": "Space-12",
+            "token": "space-12",
+            "type": "float",
+            "value": 40
+          },
+          {
+            "name": "Space-13",
+            "token": "space-13",
+            "type": "float",
+            "value": 48
+          },
+          {
+            "name": "Space-14",
+            "token": "space-14",
+            "type": "float",
+            "value": 56
+          }
+        ],
+        "strings": [],
+        "booleans": []
+      }
+    },
+    "Colors": {
+      "id": "VariableCollectionId:24:166",
+      "modes": [
+        {
+          "id": "24:0",
+          "name": "Mode 1"
+        }
+      ],
+      "variables": {
+        "colors": [
+          {
+            "name": "Base/Primary",
+            "token": "base-primary",
+            "type": "color",
+            "value": "#514c9f"
+          },
+          {
+            "name": "Base/Secondary",
+            "token": "base-secondary",
+            "type": "color",
+            "value": "#b9b7d8"
+          },
+          {
+            "name": "Border/Border 1",
+            "token": "border-border-1",
+            "type": "color",
+            "value": "#f4f4f4"
+          },
+          {
+            "name": "Border/Border 2",
+            "token": "border-border-2",
+            "type": "color",
+            "value": "#c5c5c5"
+          },
+          {
+            "name": "Border/Border 3",
+            "token": "border-border-3",
+            "type": "color",
+            "value": "#c9c9c9"
+          },
+          {
+            "name": "Action Primary/Default",
+            "token": "action-primary-default",
+            "type": "color",
+            "value": "#514c9f"
+          },
+          {
+            "name": "Action Primary/Hovered",
+            "token": "action-primary-hovered",
+            "type": "color",
+            "value": "#736fb2"
+          },
+          {
+            "name": "Action Primary/Pressed",
+            "token": "action-primary-pressed",
+            "type": "color",
+            "value": "#736fb2"
+          },
+          {
+            "name": "Action Primary/Disabled",
+            "token": "action-primary-disabled",
+            "type": "color",
+            "value": "#acacac"
+          },
+          {
+            "name": "Action Secondary/Default",
+            "token": "action-secondary-default",
+            "type": "color",
+            "value": "#b9b7d8"
+          },
+          {
+            "name": "Action Secondary/Hovered",
+            "token": "action-secondary-hovered",
+            "type": "color",
+            "value": "#736fb2"
+          },
+          {
+            "name": "Action Secondary/Pressed",
+            "token": "action-secondary-pressed",
+            "type": "color",
+            "value": "#736fb2"
+          },
+          {
+            "name": "Action Secondary/Disabled",
+            "token": "action-secondary-disabled",
+            "type": "color",
+            "value": "#acacac"
+          },
+          {
+            "name": "Text/Primary",
+            "token": "text-primary",
+            "type": "color",
+            "value": "#303030"
+          },
+          {
+            "name": "Text/Secondary",
+            "token": "text-secondary",
+            "type": "color",
+            "value": "#6c6c6c"
+          },
+          {
+            "name": "Text/Disabled",
+            "token": "text-disabled",
+            "type": "color",
+            "value": "#666666"
+          },
+          {
+            "name": "Text/Link",
+            "token": "text-link",
+            "type": "color",
+            "value": "#2e72d2"
+          },
+          {
+            "name": "Base/Background",
+            "token": "base-background",
+            "type": "color",
+            "value": "#ffffff"
+          },
+          {
+            "name": "Surface/Surface White",
+            "token": "surface-surface-white",
+            "type": "color",
+            "value": "#ffffff"
+          },
+          {
+            "name": "Surface/Surface colored 1",
+            "token": "surface-surface-colored-1",
+            "type": "color",
+            "value": "#b9b7d8"
+          },
+          {
+            "name": "Text/on primary",
+            "token": "text-on-primary",
+            "type": "color",
+            "value": "#ffffff"
+          },
+          {
+            "name": "Text/on secondary",
+            "token": "text-on-secondary",
+            "type": "color",
+            "value": "#514c9f"
+          },
+          {
+            "name": "Background/Background 1",
+            "token": "background-background-1",
+            "type": "color",
+            "value": "#f3f3f3"
+          },
+          {
+            "name": "Border/Border Purple",
+            "token": "border-border-purple",
+            "type": "color",
+            "value": "#514c9f"
+          }
+        ],
+        "numbers": [],
+        "strings": [],
+        "booleans": []
+      }
+    }
+  }
+}

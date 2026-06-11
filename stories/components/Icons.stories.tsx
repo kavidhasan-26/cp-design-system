@@ -1,0 +1,83 @@
+import type { Meta, StoryObj } from '@storybook/react';
+import { View } from 'react-native';
+import { neutral } from '../../src/tokens/primitives/colors';
+import { red } from '../../src/tokens/primitives/colors';
+import { purple } from '../../src/tokens/primitives/colors';
+import {
+  ArrowRightIcon,
+  CircleTickIcon,
+  CloseIcon,
+  EditIcon,
+  EyeClosedIcon,
+  EyeOpenIcon,
+  WarningIcon,
+} from '../../src/components/icons';
+import { componentCanvasDecorator } from '../../src/storybook/ComponentCanvas';
+import { IconGallery } from '../../src/storybook/IconGallery';
+
+const iconGallerySections = [
+  {
+    title: 'Line',
+    items: [
+      { name: 'arrow-right', icon: <ArrowRightIcon /> },
+      { name: 'close', icon: <CloseIcon /> },
+      { name: 'edit', icon: <EditIcon /> },
+      { name: 'eye-open', icon: <EyeOpenIcon /> },
+      { name: 'eye-closed', icon: <EyeClosedIcon /> },
+    ],
+  },
+  {
+    title: 'Filled',
+    items: [
+      { name: 'circle-tick', icon: <CircleTickIcon /> },
+      { name: 'warning', icon: <WarningIcon /> },
+    ],
+  },
+];
+
+const meta = {
+  title: 'Components/Icons',
+  parameters: {
+    layout: 'centered',
+    backgrounds: {
+      default: 'canvas',
+      values: [{ name: 'canvas', value: '#f4f4f4' }],
+    },
+  },
+} satisfies Meta;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Overview: Story = {
+  parameters: {
+    layout: 'fullscreen',
+    backgrounds: {
+      default: 'page',
+      values: [{ name: 'page', value: '#ffffff' }],
+    },
+  },
+  render: () => <IconGallery sections={iconGallerySections} />,
+};
+
+export const Sizes: Story = {
+  decorators: [componentCanvasDecorator()],
+  render: () => (
+    <View style={{ alignItems: 'center', gap: 16 }}>
+      <ArrowRightIcon size={12} />
+      <ArrowRightIcon size={16} />
+      <ArrowRightIcon size={24} />
+    </View>
+  ),
+};
+
+export const Colors: Story = {
+  decorators: [componentCanvasDecorator()],
+  render: () => (
+    <View style={{ flexDirection: 'row', gap: 16 }}>
+      <EyeOpenIcon color={neutral[50]} />
+      <EyeOpenIcon color={purple[40]} />
+      <WarningIcon color={red[50]} />
+    </View>
+  ),
+};

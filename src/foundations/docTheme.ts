@@ -1,0 +1,132 @@
+import { StyleSheet } from 'react-native';
+
+export const docTheme = {
+  colors: {
+    page: '#ffffff',
+    border: '#ebebeb',
+    text: '#171717',
+    textSecondary: '#666666',
+    textMuted: '#999999',
+    codeBg: '#f5f5f5',
+  },
+  layout: {
+    maxWidth: 720,
+    pagePadding: 32,
+    sectionGap: 48,
+  },
+  space: {
+    xs: 4,
+    sm: 8,
+    md: 12,
+    lg: 16,
+    xl: 24,
+  },
+} as const;
+
+export const docStyles = StyleSheet.create({
+  scroll: {
+    backgroundColor: docTheme.colors.page,
+    flex: 1,
+  },
+  content: {
+    alignSelf: 'center',
+    gap: docTheme.layout.sectionGap,
+    maxWidth: docTheme.layout.maxWidth,
+    paddingHorizontal: docTheme.layout.pagePadding,
+    paddingVertical: docTheme.layout.pagePadding,
+    width: '100%',
+  },
+  pageHeader: {
+    gap: docTheme.space.sm,
+  },
+  pageTitle: {
+    color: docTheme.colors.text,
+    fontFamily: 'Inter',
+    fontSize: 28,
+    fontWeight: '600',
+    letterSpacing: -0.3,
+    lineHeight: 34,
+  },
+  pageDescription: {
+    color: docTheme.colors.textSecondary,
+    fontFamily: 'Inter',
+    fontSize: 15,
+    fontWeight: '400',
+    lineHeight: 22,
+  },
+  section: {
+    gap: docTheme.space.lg,
+  },
+  sectionHeader: {
+    gap: docTheme.space.sm,
+  },
+  sectionTitle: {
+    color: docTheme.colors.text,
+    fontFamily: 'Inter',
+    fontSize: 15,
+    fontWeight: '600',
+    lineHeight: 20,
+  },
+  sectionDescription: {
+    color: docTheme.colors.textSecondary,
+    fontFamily: 'Inter',
+    fontSize: 14,
+    fontWeight: '400',
+    lineHeight: 20,
+  },
+  list: {
+    borderTopColor: docTheme.colors.border,
+    borderTopWidth: 1,
+  },
+  listRow: {
+    alignItems: 'center',
+    borderBottomColor: docTheme.colors.border,
+    borderBottomWidth: 1,
+    flexDirection: 'row',
+    gap: docTheme.space.lg,
+    minHeight: 52,
+    paddingVertical: docTheme.space.md,
+  },
+  listRowCompact: {
+    minHeight: 44,
+    paddingVertical: docTheme.space.sm,
+  },
+  codeBlock: {
+    backgroundColor: docTheme.colors.codeBg,
+    borderRadius: 8,
+    color: docTheme.colors.text,
+    fontFamily: 'Inter',
+    fontSize: 13,
+    fontWeight: '400',
+    lineHeight: 20,
+    padding: docTheme.space.lg,
+  },
+  tokenName: {
+    color: docTheme.colors.text,
+    fontFamily: 'Inter',
+    fontSize: 14,
+    fontWeight: '500',
+  },
+  tokenMeta: {
+    color: docTheme.colors.textMuted,
+    fontFamily: 'Inter',
+    fontSize: 13,
+    fontWeight: '400',
+  },
+  tokenValue: {
+    color: docTheme.colors.textSecondary,
+    fontFamily: 'Inter',
+    fontSize: 13,
+    fontWeight: '400',
+  },
+  linkList: {
+    gap: docTheme.space.sm,
+  },
+  linkItem: {
+    color: docTheme.colors.textSecondary,
+    fontFamily: 'Inter',
+    fontSize: 14,
+    fontWeight: '400',
+    lineHeight: 22,
+  },
+});

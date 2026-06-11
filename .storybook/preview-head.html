@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CP Design System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      #storybook-root {
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Story canvas only — not docs */
+      .sb-show-main #storybook-root {
+        min-height: 100vh;
+      }
+
+      /* Keep docs page compact */
+      .sbdocs .docs-story,
+      .sbdocs .docs-story > div,
+      .sbdocs .innerZoomElementWrapper,
+      .sbdocs .innerZoomElementWrapper > div,
+      .sbdocs #storybook-root {
+        min-height: unset !important;
+        height: auto !important;
+      }
+
+      .sbdocs .sbdocs-content {
+        padding-top: 24px;
+      }
+
+      /* Remove browser focus ring from RN TextInput on web — field border handles focus. */
+      #storybook-root input:focus,
+      #storybook-root textarea:focus {
+        box-shadow: none !important;
+        outline: none !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="storybook-root"></div>
+  </body>
+</html>
