@@ -26,7 +26,7 @@ export const Docs: Story = {
       </DocSection>
 
       <DocSection title="Install">
-        <CodeBlock>{`npm install github:kavidhasan-26/cp-design-system`}</CodeBlock>
+        <CodeBlock copyable>{`npm install github:kavidhasan-26/cp-design-system`}</CodeBlock>
       </DocSection>
 
       <DocSection title="Naming conventions">

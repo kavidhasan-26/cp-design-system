@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
-import { ScrollView, Text, View } from 'react-native';
+import { useCallback, useState } from 'react';
+import { Pressable, ScrollView, Text, View } from 'react-native';
 import { docStyles } from './docTheme';
 
 type DocPageProps = {
@@ -51,6 +52,36 @@ export function TokenRow({ children, compact }: TokenRowProps) {
   return <View style={[docStyles.listRow, compact && docStyles.listRowCompact]}>{children}</View>;
 }
 
-export function CodeBlock({ children }: { children: string }) {
-  return <Text style={docStyles.codeBlock}>{children}</Text>;
+export function CodeBlock({ children, copyable = false }: { children: string; copyable?: boolean }) {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = useCallback(async () => {
+    try {
+      await navigator.clipboard.writeText(children.trim());
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      setCopied(false);
+    }
+  }, [children]);
+
+  if (!copyable) {
+    return <Text style={docStyles.codeBlock}>{children}</Text>;
+  }
+
+  return (
+    <View style={docStyles.codeBlockWrapper}>
+      <Pressable
+        accessibilityLabel={copied ? 'Copied to clipboard' : 'Copy to clipboard'}
+        accessibilityRole="button"
+        onPress={handleCopy}
+        style={({ pressed }) => [docStyles.copyButton, pressed ? { opacity: 0.8 } : null]}
+      >
+        <Text style={docStyles.copyButtonLabel}>{copied ? 'Copied' : 'Copy'}</Text>
+      </Pressable>
+      <Text selectable style={docStyles.codeBlockText}>
+        {children}
+      </Text>
+    </View>
+  );
 }

@@ -34,6 +34,34 @@ const config: StorybookConfig = {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   `,
+  managerHead: (head) => `
+    ${head}
+    <style>
+      .sidebar-header img {
+        height: 28px;
+        width: auto;
+        max-width: 132px;
+        object-fit: contain;
+      }
+
+      .sidebar-header a {
+        align-items: center;
+        display: flex;
+        gap: 10px;
+        min-height: 40px;
+        padding-bottom: 4px;
+        padding-top: 4px;
+      }
+
+      .sidebar-header div:last-child {
+        color: #c6c6c6;
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 0.01em;
+        line-height: 1.2;
+      }
+    </style>
+  `,
   docs: {
     autodocs: 'tag',
   },
