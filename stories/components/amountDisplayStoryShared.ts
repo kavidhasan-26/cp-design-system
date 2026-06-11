@@ -1,5 +1,5 @@
 import type { ArgTypes } from '@storybook/react';
-import { AmountDisplay, type AmountDisplayState } from '../../src/components/AmountDisplay';
+import { AmountDisplay, type AmountDisplayVisibility } from '../../src/components/AmountDisplay';
 import { componentCanvasDecorator } from '../../src/storybook/ComponentCanvas';
 import {
   componentStoryParameters,
@@ -9,7 +9,7 @@ import {
   figmaSelectArgType,
 } from '../../src/storybook/figmaControls';
 
-const stateOptions = [
+const visibilityOptions = [
   { value: 'visible' as const, label: 'Visible' },
   { value: 'hidden' as const, label: 'Hidden' },
 ];
@@ -27,7 +27,7 @@ export const amountDisplayArgTypes = createFigmaArgTypes({
     description: 'When true, renders the rupee symbol before the amount.',
     defaultValue: true,
   }),
-  state: figmaSelectArgType('State', stateOptions, {
+  visibility: figmaSelectArgType('Visibility', visibilityOptions, {
     description:
       'Locks visibility for Storybook. Hidden shows mask blocks and a closed eye — tap the toggle in app code to reveal with a rolling animation.',
     defaultValue: 'hidden',
@@ -54,13 +54,13 @@ export const amountDisplayStoryParameters = {
 
 export const amountDisplayDecorators = [componentCanvasDecorator()];
 
-export function amountDisplayArgs(state?: AmountDisplayState, amount = 12000) {
+export function amountDisplayArgs(visibility?: AmountDisplayVisibility, amount = 12000) {
   return {
     amount,
     decimals: 0,
     showCurrency: true,
-    defaultVisible: state === 'visible',
-    ...(state ? { state } : {}),
+    defaultVisible: visibility === 'visible',
+    ...(visibility ? { visibility } : {}),
   };
 }
 

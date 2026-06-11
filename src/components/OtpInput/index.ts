@@ -2,6 +2,6 @@ export { OtpInput, getCellBorderColor, getOtpInputStyles, otpInputSpecs } from '
 export type {
   OtpInputHelper,
   OtpInputProps,
-  OtpInputState,
-  OtpInputVisualState,
+  OtpInputAppearance,
+  OtpInputAppearanceValue,
 } from './OtpInput';

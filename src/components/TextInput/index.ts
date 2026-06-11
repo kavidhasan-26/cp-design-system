@@ -2,7 +2,7 @@ export { TextInput, textInputSpecs, getTextInputStyles, getFieldBorderColor } fr
 export type {
   TextInputHelper,
   TextInputProps,
-  TextInputState,
+  TextInputAppearance,
   TextInputTextCase,
-  TextInputVisualState,
+  TextInputAppearanceValue,
 } from './TextInput';

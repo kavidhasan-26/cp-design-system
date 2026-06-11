@@ -1,15 +1,15 @@
 export { ButtonGroup } from './ButtonGroup';
 export { buttonGroupSpecs } from './buttonGroupStyles';
-export { applyPrimaryPosition, combinationHierarchies, resolveSlotHierarchies } from './orderHierarchies';
+export { applyPrimaryPosition, variantHierarchies, resolveSlotHierarchies } from './orderHierarchies';
 export {
-  getCombinationCount,
-  resolveCombination,
+  getVariantButtonCount,
+  resolveVariant,
   resolveCount,
   resolvePrimaryPosition,
 } from './resolveButtonGroup';
 export type {
   ButtonGroupButtonConfig,
-  ButtonGroupCombination,
+  ButtonGroupVariant,
   ButtonGroupLayout,
   ButtonGroupPrimaryPosition,
   ButtonGroupProps,

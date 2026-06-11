@@ -3,6 +3,6 @@ export type {
   ButtonHierarchy,
   ButtonProps,
   ButtonSize,
-  ButtonState,
-  ButtonVisualState,
+  ButtonAppearance,
+  ButtonAppearanceValue,
 } from './Button';

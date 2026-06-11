@@ -1,10 +1,10 @@
 import type { ReactNode } from 'react';
 import type { StyleProp, ViewStyle } from 'react-native';
-import type { ButtonHierarchy, ButtonSize, ButtonState } from '../Button';
+import type { ButtonHierarchy, ButtonSize, ButtonAppearance } from '../Button';
 
 export type ButtonGroupLayout = 'row' | 'column';
 
-export type ButtonGroupCombination =
+export type ButtonGroupVariant =
   | 'primary-secondary'
   | 'primary-tertiary'
   | 'primary-secondary-tertiary'
@@ -19,7 +19,7 @@ export type ButtonGroupButtonConfig = {
   iconLeading?: boolean | ReactNode;
   iconTrailing?: boolean | ReactNode;
   onPress?: () => void;
-  state?: ButtonState;
+  appearance?: ButtonAppearance;
   disabled?: boolean;
 };
 
@@ -32,11 +32,11 @@ export type ButtonGroupProps = {
   fullWidth?: boolean;
   /** Figma property: Count — 2 for row; 2 or 3 for column. */
   count?: 2 | 3;
-  /** Figma property: Combination — hierarchy mix for the slots. */
-  combination?: ButtonGroupCombination;
+  /** Figma property: Variant — hierarchy mix for the slots. */
+  variant?: ButtonGroupVariant;
   /** Figma property: Primary position — trailing puts primary on the right (row) or bottom (column). */
   primaryPosition?: ButtonGroupPrimaryPosition;
-  /** Explicit slot order. Overrides combination and primary position when length matches count. */
+  /** Explicit slot order. Overrides variant and primary position when length matches count. */
   hierarchies?: ButtonHierarchy[];
   /** Optional per-button overrides for hierarchy, labels, icons, and handlers. */
   buttons?: ButtonGroupButtonConfig[];

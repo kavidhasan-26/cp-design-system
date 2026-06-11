@@ -23,11 +23,11 @@ import {
   getTextInputStyles,
   textInputSpecs,
   type TextInputHelper,
-  type TextInputVisualState,
+  type TextInputAppearanceValue,
 } from './textInputStyles';
 
-/** Matches Figma property: State */
-export type TextInputState = TextInputVisualState;
+/** Matches Figma property: Appearance */
+export type TextInputAppearance = TextInputAppearanceValue;
 
 /** Controls how typed text is capitalized. */
 export type TextInputTextCase = 'default' | 'uppercase' | 'lowercase' | 'capitalize' | 'none';
@@ -43,8 +43,8 @@ export type TextInputProps = {
   placeholder?: string;
   /** Figma property: Value */
   value?: string;
-  /** Figma property: State — locks appearance for Storybook/docs. Omit in app code for live focus/value behavior. */
-  state?: TextInputState;
+  /** Figma property: Appearance — locks appearance for Storybook/docs. Omit in app code for live focus/value behavior. */
+  appearance?: TextInputAppearance;
   /** Stretches the input to fill the width of its parent container. */
   fullWidth?: boolean;
   /** Convenience alias for state="disabled" in app code. */
@@ -69,17 +69,17 @@ function normalizeHelper(helper: TextInputHelper | undefined): TextInputHelper {
 }
 
 function resolveVisualState(
-  state: TextInputState | undefined,
+  appearance: TextInputAppearance | undefined,
   disabled: boolean,
   loading: boolean,
   focused: boolean,
   hasValue: boolean,
-): TextInputVisualState {
-  if (disabled || state === 'disabled') {
+): TextInputAppearanceValue {
+  if (disabled || appearance === 'disabled') {
     return 'disabled';
   }
 
-  if (loading || state === 'loading') {
+  if (loading || appearance === 'loading') {
     return 'loading';
   }
 
@@ -88,15 +88,15 @@ function resolveVisualState(
     return 'active';
   }
 
-  if (state === 'active') {
+  if (appearance === 'active') {
     return 'active';
   }
 
-  if (state === 'filled') {
+  if (appearance === 'filled') {
     return 'filled';
   }
 
-  if (state === 'enabled') {
+  if (appearance === 'enabled') {
     return 'enabled';
   }
 
@@ -107,7 +107,7 @@ function resolveVisualState(
   return 'enabled';
 }
 
-function getBorderAnimationValue(visualState: TextInputVisualState, helper: TextInputHelper): number {
+function getBorderAnimationValue(visualState: TextInputAppearanceValue, helper: TextInputHelper): number {
   if (helper === 'error') {
     return 2;
   }
@@ -150,7 +150,7 @@ export function TextInput({
   helperText = 'Helper message',
   placeholder = 'Placeholder',
   value = '',
-  state,
+  appearance,
   fullWidth = false,
   disabled = false,
   iconLeading,
@@ -169,7 +169,7 @@ export function TextInput({
   const resolvedValue = onChangeText ? value : internalValue;
   const hasValue = resolvedValue.length > 0;
   const normalizedHelper = normalizeHelper(helper);
-  const visualState = resolveVisualState(state, disabled, false, focused, hasValue);
+  const visualState = resolveVisualState(appearance, disabled, false, focused, hasValue);
   const borderAnim = useRef(
     new Animated.Value(getBorderAnimationValue(visualState, normalizedHelper)),
   ).current;
@@ -299,4 +299,4 @@ const componentStyles = StyleSheet.create({
 });
 
 export { ArrowRightIcon, getFieldBorderColor, getTextInputStyles, textInputSpecs };
-export type { TextInputHelper, TextInputVisualState };
+export type { TextInputHelper, TextInputAppearanceValue };

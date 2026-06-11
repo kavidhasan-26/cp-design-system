@@ -46,11 +46,11 @@ export const Overview: Story = {
   },
   render: () => (
     <View style={{ gap: 32, width: 343 }}>
-      <ButtonGroup combination="primary-secondary" fullWidth layout="row" primaryPosition="end" />
-      <ButtonGroup combination="primary-tertiary" fullWidth layout="row" primaryPosition="end" />
-      <ButtonGroup combination="primary-secondary-tertiary" count={3} fullWidth layout="column" primaryPosition="end" />
-      <ButtonGroup combination="primary-tertiary" count={2} fullWidth layout="column" primaryPosition="end" />
-      <ButtonGroup combination="secondary-secondary" count={2} fullWidth layout="column" />
+      <ButtonGroup variant="primary-secondary" fullWidth layout="row" primaryPosition="end" />
+      <ButtonGroup variant="primary-tertiary" fullWidth layout="row" primaryPosition="end" />
+      <ButtonGroup variant="primary-secondary-tertiary" count={3} fullWidth layout="column" primaryPosition="end" />
+      <ButtonGroup variant="primary-tertiary" count={2} fullWidth layout="column" primaryPosition="end" />
+      <ButtonGroup variant="secondary-secondary" count={2} fullWidth layout="column" />
     </View>
   ),
 };
@@ -66,7 +66,7 @@ export const RowPrimaryTertiary: Story = {
   args: {
     layout: 'row',
     count: 2,
-    combination: 'primary-tertiary',
+    variant: 'primary-tertiary',
     fullWidth: true,
   },
 };
@@ -75,7 +75,7 @@ export const ColumnPrimaryTertiary: Story = {
   args: {
     layout: 'column',
     count: 2,
-    combination: 'primary-tertiary',
+    variant: 'primary-tertiary',
     fullWidth: true,
   },
 };
@@ -84,7 +84,7 @@ export const ColumnThreeUp: Story = {
   args: {
     layout: 'column',
     count: 3,
-    combination: 'primary-secondary-tertiary',
+    variant: 'primary-secondary-tertiary',
     fullWidth: true,
   },
 };
@@ -93,7 +93,7 @@ export const ColumnPrimarySecondary: Story = {
   args: {
     layout: 'column',
     count: 2,
-    combination: 'primary-secondary',
+    variant: 'primary-secondary',
     fullWidth: true,
   },
 };
@@ -102,7 +102,7 @@ export const ColumnSecondarySecondary: Story = {
   args: {
     layout: 'column',
     count: 2,
-    combination: 'secondary-secondary',
+    variant: 'secondary-secondary',
     fullWidth: true,
   },
 };
@@ -111,7 +111,7 @@ export const SmallSize: Story = {
   args: {
     layout: 'row',
     count: 2,
-    combination: 'primary-secondary',
+    variant: 'primary-secondary',
     size: 'small',
     fullWidth: true,
   },
@@ -121,7 +121,7 @@ export const WithIcons: Story = {
   args: {
     layout: 'row',
     count: 2,
-    combination: 'primary-secondary',
+    variant: 'primary-secondary',
     fullWidth: true,
     buttons: [{ iconLeading: true }, { iconTrailing: true }],
   },
@@ -138,7 +138,7 @@ export const HugWidth: Story = {
   args: {
     layout: 'row',
     count: 2,
-    combination: 'primary-secondary',
+    variant: 'primary-secondary',
     primaryPosition: 'end',
     fullWidth: false,
   },
@@ -155,7 +155,7 @@ export const RowPrimaryOnStart: Story = {
   args: {
     layout: 'row',
     count: 2,
-    combination: 'primary-secondary',
+    variant: 'primary-secondary',
     primaryPosition: 'start',
     fullWidth: true,
   },

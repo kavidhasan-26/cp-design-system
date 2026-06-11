@@ -15,7 +15,7 @@ const sizeOptions = [
   { value: 'small' as const, label: 'Small' },
 ];
 
-const stateOptions = [
+const appearanceOptions = [
   { value: 'active' as const, label: 'Active' },
   { value: 'hovered' as const, label: 'Hovered/Pressed' },
   { value: 'disabled' as const, label: 'Disabled' },
@@ -30,7 +30,7 @@ export const buttonArgTypes = createFigmaArgTypes({
     description: 'Controls padding and height. Normal is the default size; Small is used in compact layouts.',
     defaultValue: 'normal',
   }),
-  state: figmaSelectArgType('State', stateOptions, {
+  appearance: figmaSelectArgType('Appearance', appearanceOptions, {
     description:
       'Visual interaction state matching the Figma component set. Use Active for default, Hovered/Pressed for feedback states, and Disabled when the action is unavailable.',
     defaultValue: 'active',
@@ -69,7 +69,7 @@ export function buttonArgs(hierarchy: ButtonHierarchy) {
     label: 'Button',
     hierarchy,
     size: 'normal' as const,
-    state: 'active' as const,
+    appearance: 'active' as const,
     iconLeading: false,
     iconTrailing: false,
     fullWidth: false,

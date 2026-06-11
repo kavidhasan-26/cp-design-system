@@ -3,21 +3,21 @@ import {
   getRadioButtonStyles,
   isRadioButtonSelected,
   radioButtonSpecs,
-  resolveRadioButtonType,
-  type RadioButtonType,
+  resolveRadioButtonVariant,
+  type RadioButtonVariant,
 } from './radioButtonStyles';
 
-export type { RadioButtonType };
+export type { RadioButtonVariant };
 
 export type RadioButtonProps = {
   /** Figma property: Label */
   label?: string;
-  /** Figma property: Type — locks appearance for Storybook/docs. Omit in app code to derive from selected, borders, and disabled. */
-  type?: RadioButtonType;
+  /** Figma property: Variant — locks appearance for Storybook/docs. Omit in app code to derive from selected, bordered, and disabled. */
+  variant?: RadioButtonVariant;
   /** Whether the option is selected. */
   selected?: boolean;
-  /** When false, renders the no-borders variant. Defaults to true. */
-  borders?: boolean;
+  /** When false, renders the plain (no border) variant. Defaults to true. */
+  bordered?: boolean;
   /** Convenience alias for type="disabled" in app code. */
   disabled?: boolean;
   /** Stretches the control to fill the width of its parent container. */
@@ -29,19 +29,19 @@ export type RadioButtonProps = {
 
 export function RadioButton({
   label = 'Label',
-  type,
+  variant,
   selected = false,
-  borders = true,
+  bordered = true,
   disabled = false,
   fullWidth = false,
   onPress,
   style,
   testID,
 }: RadioButtonProps) {
-  const visualType = resolveRadioButtonType(type, disabled, selected, borders);
-  const stylesForType = getRadioButtonStyles(visualType);
-  const isSelected = isRadioButtonSelected(visualType);
-  const isDisabled = visualType === 'disabled';
+  const visualVariant = resolveRadioButtonVariant(variant, disabled, selected, bordered);
+  const stylesForType = getRadioButtonStyles(visualVariant);
+  const isSelected = isRadioButtonSelected(visualVariant);
+  const isDisabled = visualVariant === 'disabled';
 
   return (
     <Pressable

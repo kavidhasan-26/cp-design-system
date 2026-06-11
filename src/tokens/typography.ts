@@ -1,4 +1,5 @@
 import type { TextStyle } from 'react-native';
+import { typographyAliases, type TypographyAlias } from './aliases';
 
 export type TypographyStyleDefinition = {
   name: string;
@@ -72,7 +73,11 @@ export const typographyByCategory = {
 } as const;
 
 export function getTypographyStyle(token: string): TextStyle {
-  const def = typographyDefinitions.find((item) => item.token === token);
+  const resolvedToken =
+    token in typographyAliases
+      ? typographyAliases[token as TypographyAlias]
+      : token;
+  const def = typographyDefinitions.find((item) => item.token === resolvedToken);
 
   if (!def) {
     throw new Error(`Unknown typography token: ${token}`);

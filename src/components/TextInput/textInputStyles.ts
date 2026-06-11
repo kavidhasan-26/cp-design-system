@@ -6,7 +6,7 @@ import { radius } from '../../tokens/radius';
 import { space } from '../../tokens/spacing';
 import { getTypographyStyle } from '../../tokens/typography';
 
-export type TextInputVisualState = 'enabled' | 'active' | 'filled' | 'loading' | 'disabled';
+export type TextInputAppearanceValue = 'enabled' | 'active' | 'filled' | 'loading' | 'disabled';
 export type TextInputHelper = 'none' | 'error' | 'success' | 'hint';
 
 /** Pixel-perfect text-input specs extracted from Figma component set (node 65:27). */
@@ -43,7 +43,7 @@ export const textInputSpecs = {
   },
 } as const;
 
-export function getFieldBorderColor(visualState: TextInputVisualState, helper: TextInputHelper): string {
+export function getFieldBorderColor(visualState: TextInputAppearanceValue, helper: TextInputHelper): string {
   if (helper === 'error') {
     return textInputSpecs.colors.borderError;
   }
@@ -55,7 +55,7 @@ export function getFieldBorderColor(visualState: TextInputVisualState, helper: T
   return textInputSpecs.colors.borderDefault;
 }
 
-export function getFieldBackgroundColor(visualState: TextInputVisualState): string {
+export function getFieldBackgroundColor(visualState: TextInputAppearanceValue): string {
   if (visualState === 'loading') {
     return textInputSpecs.colors.loadingBackground;
   }
@@ -67,7 +67,7 @@ export function getFieldBackgroundColor(visualState: TextInputVisualState): stri
   return textInputSpecs.colors.fieldBackground;
 }
 
-export function getInputTextColor(visualState: TextInputVisualState, hasValue: boolean): TextStyle['color'] {
+export function getInputTextColor(visualState: TextInputAppearanceValue, hasValue: boolean): TextStyle['color'] {
   if (visualState === 'disabled') {
     return textInputSpecs.colors.placeholder;
   }
@@ -105,7 +105,7 @@ type TextInputStyleConfig = {
 };
 
 export function getTextInputStyles(
-  visualState: TextInputVisualState,
+  visualState: TextInputAppearanceValue,
   helper: TextInputHelper,
   hasValue: boolean,
   fullWidth: boolean,

@@ -1,7 +1,7 @@
 import type { ArgTypes } from '@storybook/react';
 import {
   ButtonGroup,
-  type ButtonGroupCombination,
+  type ButtonGroupVariant,
   type ButtonGroupLayout,
   type ButtonGroupPrimaryPosition,
 } from '../../src/components/ButtonGroup';
@@ -64,7 +64,7 @@ export const buttonGroupArgTypes = createFigmaArgTypes({
       defaultValue: { summary: '2' },
     },
   },
-  combination: figmaSelectArgType('Combination', [...rowCombinationOptions, ...columnCombinationOptions], {
+  variant: figmaSelectArgType('Variant', [...rowCombinationOptions, ...columnCombinationOptions], {
     description:
       'Hierarchy mix per slot. Row: Primary+Secondary or Primary+Tertiary. Column (2): Primary+Secondary, Primary+Tertiary, or Secondary+Secondary. Column (3): Primary+Secondary+Tertiary.',
     defaultValue: 'primary-secondary',
@@ -92,7 +92,7 @@ export const buttonGroupDecorators = [componentCanvasDecorator()];
 
 export function buttonGroupArgs(
   layout: ButtonGroupLayout = 'row',
-  combination: ButtonGroupCombination = 'primary-secondary',
+  variant: ButtonGroupVariant = 'primary-secondary',
   count: 2 | 3 = layout === 'row' ? 2 : 2,
   primaryPosition: ButtonGroupPrimaryPosition = 'end',
 ) {
@@ -101,7 +101,7 @@ export function buttonGroupArgs(
     size: 'normal' as const,
     fullWidth: false,
     count,
-    combination,
+    variant,
     primaryPosition,
   };
 }

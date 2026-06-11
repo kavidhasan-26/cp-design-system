@@ -5,4 +5,4 @@ export {
   getAmountDisplayStyles,
   getIndianAmountDigitCount,
 } from './AmountDisplay';
-export type { AmountDisplayProps, AmountDisplayState } from './AmountDisplay';
+export type { AmountDisplayProps, AmountDisplayVisibility } from './AmountDisplay';

@@ -1,5 +1,5 @@
 import type { ArgTypes } from '@storybook/react';
-import { OtpInput, type OtpInputState } from '../../src/components/OtpInput';
+import { OtpInput, type OtpInputAppearance } from '../../src/components/OtpInput';
 import { componentCanvasDecorator } from '../../src/storybook/ComponentCanvas';
 import {
   componentStoryParameters,
@@ -9,7 +9,7 @@ import {
   figmaTextArgType,
 } from '../../src/storybook/figmaControls';
 
-const stateOptions = [
+const appearanceOptions = [
   { value: 'enabled' as const, label: 'Enabled' },
   { value: 'active' as const, label: 'Active' },
   { value: 'filled' as const, label: 'Filled' },
@@ -40,7 +40,7 @@ export const otpInputArgTypes = createFigmaArgTypes({
     description: 'Copy shown in the helper row when Helper is not None.',
     defaultValue: 'Helper message',
   }),
-  state: figmaSelectArgType('State', stateOptions, {
+  appearance: figmaSelectArgType('Appearance', appearanceOptions, {
     description:
       'Locks the visual appearance for Storybook. Active matches the focused cell in app code — leave unset on Enabled to interact with focus, typing, and the purple border transition.',
     defaultValue: 'enabled',
@@ -67,13 +67,13 @@ export const otpInputStoryParameters = {
 
 export const otpInputDecorators = [componentCanvasDecorator()];
 
-export function otpInputArgs(state?: OtpInputState) {
+export function otpInputArgs(appearance?: OtpInputAppearance) {
   return {
     label: true,
-    value: state === 'filled' ? '1234' : '',
+    value: appearance === 'filled' ? '1234' : '',
     helper: 'none' as const,
     helperText: 'Helper message',
-    ...(state ? { state } : {}),
+    ...(appearance ? { appearance } : {}),
     fullWidth: false,
   };
 }

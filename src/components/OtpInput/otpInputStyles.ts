@@ -6,7 +6,7 @@ import { radius } from '../../tokens/radius';
 import { space } from '../../tokens/spacing';
 import { getTypographyStyle } from '../../tokens/typography';
 
-export type OtpInputVisualState = 'enabled' | 'active' | 'filled' | 'disabled';
+export type OtpInputAppearanceValue = 'enabled' | 'active' | 'filled' | 'disabled';
 export type OtpInputHelper = 'none' | 'error' | 'success' | 'hint';
 
 /** Pixel-perfect OTP specs extracted from Figma component set (node 70:114). */
@@ -78,7 +78,7 @@ type OtpInputStyleConfig = {
 };
 
 export function getOtpInputStyles(
-  visualState: OtpInputVisualState,
+  visualState: OtpInputAppearanceValue,
   helper: OtpInputHelper,
   fullWidth: boolean,
 ): OtpInputStyleConfig {

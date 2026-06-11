@@ -1,7 +1,7 @@
 import type { ButtonHierarchy } from '../Button';
-import type { ButtonGroupButtonConfig, ButtonGroupCombination, ButtonGroupPrimaryPosition } from './types';
+import type { ButtonGroupButtonConfig, ButtonGroupVariant, ButtonGroupPrimaryPosition } from './types';
 
-export const combinationHierarchies: Record<ButtonGroupCombination, ButtonHierarchy[]> = {
+export const variantHierarchies: Record<ButtonGroupVariant, ButtonHierarchy[]> = {
   'primary-secondary': ['primary', 'secondary'],
   'primary-tertiary': ['primary', 'tertiary'],
   'primary-secondary-tertiary': ['primary', 'secondary', 'tertiary'],
@@ -21,7 +21,7 @@ export function applyPrimaryPosition(
 }
 
 export function resolveSlotHierarchies(
-  combination: ButtonGroupCombination,
+  variant: ButtonGroupVariant,
   count: 2 | 3,
   primaryPosition: ButtonGroupPrimaryPosition,
   hierarchies: ButtonHierarchy[] | undefined,
@@ -38,6 +38,6 @@ export function resolveSlotHierarchies(
     }
   }
 
-  const base = combinationHierarchies[combination].slice(0, count);
+  const base = variantHierarchies[variant].slice(0, count);
   return applyPrimaryPosition(base, primaryPosition);
 }

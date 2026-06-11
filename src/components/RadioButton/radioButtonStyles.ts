@@ -23,12 +23,12 @@ export const radioButtonSpecs = {
   labelStyle: getTypographyStyle('body-r2'),
 } as const;
 
-export type RadioButtonType =
+export type RadioButtonVariant =
   | 'unselected'
-  | 'active'
+  | 'selected'
   | 'disabled'
-  | 'unselected-no-borders'
-  | 'active-no-borders';
+  | 'unselected-plain'
+  | 'selected-plain';
 
 type RadioButtonStyleConfig = {
   container: ViewStyle;
@@ -37,15 +37,15 @@ type RadioButtonStyleConfig = {
   indicatorDot: ViewStyle | null;
 };
 
-function hasContainerBorder(type: RadioButtonType): boolean {
-  return type === 'unselected' || type === 'active' || type === 'disabled';
+function hasContainerBorder(variant: RadioButtonVariant): boolean {
+  return variant === 'unselected' || variant === 'selected' || variant === 'disabled';
 }
 
-function isSelected(type: RadioButtonType): boolean {
-  return type === 'active' || type === 'active-no-borders';
+function isSelected(variant: RadioButtonVariant): boolean {
+  return variant === 'selected' || variant === 'selected-plain';
 }
 
-export function getRadioButtonStyles(type: RadioButtonType): RadioButtonStyleConfig {
+export function getRadioButtonStyles(variant: RadioButtonVariant): RadioButtonStyleConfig {
   const baseContainer: ViewStyle = {
     flexDirection: 'row',
     alignItems: 'center',
@@ -54,7 +54,7 @@ export function getRadioButtonStyles(type: RadioButtonType): RadioButtonStyleCon
     borderRadius: radioButtonSpecs.borderRadius,
   };
 
-  if (hasContainerBorder(type)) {
+  if (hasContainerBorder(variant)) {
     baseContainer.paddingHorizontal = radioButtonSpecs.paddingHorizontal;
     baseContainer.borderWidth = radioButtonSpecs.borderWidth;
   } else {
@@ -75,7 +75,7 @@ export function getRadioButtonStyles(type: RadioButtonType): RadioButtonStyleCon
     justifyContent: 'center',
   };
 
-  if (type === 'disabled') {
+  if (variant === 'disabled') {
     return {
       container: {
         ...baseContainer,
@@ -94,7 +94,7 @@ export function getRadioButtonStyles(type: RadioButtonType): RadioButtonStyleCon
     };
   }
 
-  if (type === 'active') {
+  if (variant === 'selected') {
     return {
       container: {
         ...baseContainer,
@@ -115,7 +115,7 @@ export function getRadioButtonStyles(type: RadioButtonType): RadioButtonStyleCon
     };
   }
 
-  if (type === 'active-no-borders') {
+  if (variant === 'selected-plain') {
     return {
       container: baseContainer,
       label: baseLabel,
@@ -135,7 +135,7 @@ export function getRadioButtonStyles(type: RadioButtonType): RadioButtonStyleCon
   return {
     container: {
       ...baseContainer,
-      ...(hasContainerBorder(type) ? { borderColor: border.border3 } : {}),
+      ...(hasContainerBorder(variant) ? { borderColor: border.border3 } : {}),
     },
     label: baseLabel,
     indicator: {
@@ -146,14 +146,13 @@ export function getRadioButtonStyles(type: RadioButtonType): RadioButtonStyleCon
   };
 }
 
-export function resolveRadioButtonType(
-  type: RadioButtonType | undefined,
+export function resolveRadioButtonVariant(variant: RadioButtonVariant | undefined,
   disabled: boolean,
   selected: boolean,
-  borders: boolean,
-): RadioButtonType {
-  if (type) {
-    return type;
+  bordered: boolean,
+): RadioButtonVariant {
+  if (variant) {
+    return variant;
   }
 
   if (disabled) {
@@ -161,12 +160,12 @@ export function resolveRadioButtonType(
   }
 
   if (selected) {
-    return borders ? 'active' : 'active-no-borders';
+    return bordered ? 'selected' : 'selected-plain';
   }
 
-  return borders ? 'unselected' : 'unselected-no-borders';
+  return bordered ? 'unselected' : 'unselected-plain';
 }
 
-export function isRadioButtonSelected(type: RadioButtonType): boolean {
-  return isSelected(type);
+export function isRadioButtonSelected(variant: RadioButtonVariant): boolean {
+  return isSelected(variant);
 }

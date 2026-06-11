@@ -3,7 +3,7 @@ import { Button } from '../Button';
 import { buttonGroupSpecs, getButtonGroupStyles } from './buttonGroupStyles';
 import { resolveSlotHierarchies } from './orderHierarchies';
 import {
-  resolveCombination,
+  resolveVariant,
   resolveCount,
   resolvePrimaryPosition,
 } from './resolveButtonGroup';
@@ -14,22 +14,22 @@ export function ButtonGroup({
   size = 'normal',
   fullWidth = false,
   count,
-  combination,
+  variant,
   primaryPosition,
   hierarchies,
   buttons,
   style,
   testID,
 }: ButtonGroupProps) {
-  const resolvedCombination = resolveCombination(
+  const resolvedVariant = resolveVariant(
     layout,
     count ?? (layout === 'row' ? 2 : 3),
-    combination,
+    variant,
   );
-  const resolvedCount = resolveCount(layout, count, resolvedCombination);
+  const resolvedCount = resolveCount(layout, count, resolvedVariant);
   const resolvedPrimaryPosition = resolvePrimaryPosition(primaryPosition);
   const slotHierarchies = resolveSlotHierarchies(
-    resolvedCombination,
+    resolvedVariant,
     resolvedCount,
     resolvedPrimaryPosition,
     hierarchies,
@@ -63,7 +63,7 @@ export function ButtonGroup({
               label={slot?.label ?? 'Button'}
               onPress={slot?.onPress}
               size={size}
-              state={slot?.state}
+              appearance={slot?.appearance}
             />
           </View>
         );

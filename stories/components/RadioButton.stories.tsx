@@ -25,7 +25,7 @@ const meta = {
       page: radioButtonStoryParameters.docs.page,
       description: {
         component:
-          'Radio buttons let users select one option from a set. Label sits on the left and the indicator on the right. Supports bordered and no-borders variants plus Active, Unselected, and Disabled states.',
+          'Radio buttons let users select one option from a set. Label sits on the left and the indicator on the right. Supports bordered and plain variants plus selected, unselected, and disabled appearances.',
       },
     },
   },
@@ -45,17 +45,17 @@ export const Overview: Story = {
     controls: { disable: true },
     docs: {
       description: {
-        story: 'All five Type variants from the Figma component set.',
+        story: 'All five variants from the Figma component set.',
       },
     },
   },
   render: () => (
     <View style={{ gap: 12, width: 276 }}>
-      <RadioButton type="unselected" />
-      <RadioButton type="active" />
-      <RadioButton type="disabled" />
-      <RadioButton type="unselected-no-borders" />
-      <RadioButton type="active-no-borders" />
+      <RadioButton variant="unselected" />
+      <RadioButton variant="selected" />
+      <RadioButton variant="disabled" />
+      <RadioButton variant="unselected-plain" />
+      <RadioButton variant="selected-plain" />
     </View>
   ),
 };
@@ -65,24 +65,24 @@ export const Unselected: Story = {
 };
 
 export const Active: Story = {
-  args: radioButtonArgs('active'),
+  args: radioButtonArgs('selected'),
 };
 
 export const Disabled: Story = {
   args: radioButtonArgs('disabled'),
 };
 
-export const UnselectedNoBorders: Story = {
-  args: radioButtonArgs('unselected-no-borders'),
+export const UnselectedPlain: Story = {
+  args: radioButtonArgs('unselected-plain'),
 };
 
-export const ActiveNoBorders: Story = {
-  args: radioButtonArgs('active-no-borders'),
+export const SelectedPlain: Story = {
+  args: radioButtonArgs('selected-plain'),
 };
 
 export const FullWidth: Story = {
   args: {
-    ...radioButtonArgs('active'),
+    ...radioButtonArgs('selected'),
     fullWidth: true,
   },
   parameters: {
@@ -99,7 +99,7 @@ export const Interactive: Story = {
     controls: { disable: true },
     docs: {
       description: {
-        story: 'Live selection without locking Type — mirrors app usage with selected and borders props.',
+        story: 'Live selection without locking variant — mirrors app usage with selected and bordered props.',
       },
     },
   },

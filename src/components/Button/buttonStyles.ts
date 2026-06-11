@@ -30,7 +30,7 @@ export const buttonSpecs = {
 
 export type ButtonHierarchy = 'primary' | 'secondary' | 'tertiary';
 export type ButtonSize = 'normal' | 'small';
-export type ButtonVisualState = 'active' | 'hovered' | 'disabled';
+export type ButtonAppearanceValue = 'active' | 'hovered' | 'disabled';
 
 type ButtonStyleConfig = {
   container: ViewStyle;
@@ -44,7 +44,7 @@ function getPadding(hierarchy: ButtonHierarchy, size: ButtonSize) {
 export function getButtonStyles(
   hierarchy: ButtonHierarchy,
   size: ButtonSize,
-  visualState: ButtonVisualState,
+  visualState: ButtonAppearanceValue,
 ): ButtonStyleConfig {
   const padding = getPadding(hierarchy, size);
   const baseContainer: ViewStyle = {

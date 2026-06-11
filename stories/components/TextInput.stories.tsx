@@ -42,11 +42,11 @@ export const Overview: Story = {
   },
   render: () => (
     <View style={{ gap: 24, width: 347 }}>
-      <TextInput label placeholder="Placeholder" state="enabled" />
-      <TextInput label placeholder="Placeholder" state="active" />
-      <TextInput label value="Value" state="filled" />
-      <TextInput label placeholder="Placeholder" state="loading" />
-      <TextInput label placeholder="Placeholder" state="disabled" />
+      <TextInput label placeholder="Placeholder" appearance="enabled" />
+      <TextInput label placeholder="Placeholder" appearance="active" />
+      <TextInput label value="Value" appearance="filled" />
+      <TextInput label placeholder="Placeholder" appearance="loading" />
+      <TextInput label placeholder="Placeholder" appearance="disabled" />
     </View>
   ),
 };

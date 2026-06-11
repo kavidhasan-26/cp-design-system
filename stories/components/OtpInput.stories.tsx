@@ -42,10 +42,10 @@ export const Overview: Story = {
   },
   render: () => (
     <View style={{ gap: 24, width: 347 }}>
-      <OtpInput label state="enabled" />
-      <OtpInput label state="active" />
-      <OtpInput label state="filled" value="1234" />
-      <OtpInput label state="disabled" />
+      <OtpInput label appearance="enabled" />
+      <OtpInput label appearance="active" />
+      <OtpInput label appearance="filled" value="1234" />
+      <OtpInput label appearance="disabled" />
     </View>
   ),
 };

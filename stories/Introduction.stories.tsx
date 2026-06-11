@@ -29,14 +29,37 @@ export const Docs: Story = {
         <CodeBlock>{`npm install github:kavidhasan-26/cp-design-system`}</CodeBlock>
       </DocSection>
 
+      <DocSection title="Naming conventions">
+        <CodeBlock>{`Components
+- variant      Style variant (RadioButton, ButtonGroup)
+- appearance   Locked visual for Storybook (Button, TextInput, OtpInput)
+- visibility   Visible / hidden (AmountDisplay)
+- hierarchy    Button emphasis: primary | secondary | tertiary
+- bordered     RadioButton container stroke on/off
+
+Tokens — Figma names still work
+- space[4], radius[2], border.border3, getTypographyStyle('body-r2')
+
+Tokens — developer aliases
+- spacing.md, radii.md, borders.default, borders.focus
+- getTypographyStyle('body-regular-sm')  → body-r3
+- getTypographyStyle('heading-sm')       → heading-5`}</CodeBlock>
+      </DocSection>
+
       <DocSection title="Usage">
-        <CodeBlock>{`import { Button, tokens, getTypographyStyle } from 'cp-design-system';
+        <CodeBlock>{`import { Button, RadioButton, ButtonGroup, tokens, getTypographyStyle, spacing } from 'cp-design-system';
+
+<Button label="Continue" hierarchy="primary" onPress={handlePress} />
+
+<RadioButton label="Option A" selected bordered onPress={selectA} />
+
+<ButtonGroup variant="primary-secondary" layout="row" fullWidth primaryPosition="end" />
 
 const styles = StyleSheet.create({
-  title: getTypographyStyle('heading-2'),
+  title: getTypographyStyle('heading-sm'),
   screen: {
     backgroundColor: tokens.colors.semantic.base.background,
-    padding: tokens.space[8],
+    padding: spacing['3xl'],
   },
 });`}</CodeBlock>
       </DocSection>

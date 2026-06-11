@@ -19,11 +19,11 @@ import {
   getOtpInputStyles,
   otpInputSpecs,
   type OtpInputHelper,
-  type OtpInputVisualState,
+  type OtpInputAppearanceValue,
 } from './otpInputStyles';
 
-/** Matches Figma property: State */
-export type OtpInputState = OtpInputVisualState;
+/** Matches Figma property: Appearance */
+export type OtpInputAppearance = OtpInputAppearanceValue;
 
 export type OtpInputProps = {
   label?: boolean | string;
@@ -33,7 +33,7 @@ export type OtpInputProps = {
   length?: number;
   value?: string;
   /** Locks appearance for Storybook. Omit in app code for live focus and typing. */
-  state?: OtpInputState;
+  appearance?: OtpInputAppearance;
   fullWidth?: boolean;
   disabled?: boolean;
   onChangeText?: (value: string) => void;
@@ -51,13 +51,13 @@ function sanitizeValue(value: string, length: number): string {
 }
 
 function resolveVisualState(
-  state: OtpInputState | undefined,
+  appearance: OtpInputAppearance | undefined,
   disabled: boolean,
   focused: boolean,
   value: string,
   length: number,
-): OtpInputVisualState {
-  if (disabled || state === 'disabled') {
+): OtpInputAppearanceValue {
+  if (disabled || appearance === 'disabled') {
     return 'disabled';
   }
 
@@ -65,15 +65,15 @@ function resolveVisualState(
     return value.length >= length ? 'filled' : 'active';
   }
 
-  if (state === 'active') {
+  if (appearance === 'active') {
     return 'active';
   }
 
-  if (state === 'filled') {
+  if (appearance === 'filled') {
     return 'filled';
   }
 
-  if (state === 'enabled') {
+  if (appearance === 'enabled') {
     return 'enabled';
   }
 
@@ -89,7 +89,7 @@ function resolveVisualState(
 }
 
 function getActiveCellIndex(
-  state: OtpInputState | undefined,
+  appearance: OtpInputAppearance | undefined,
   focused: boolean,
   valueLength: number,
   length: number,
@@ -98,11 +98,11 @@ function getActiveCellIndex(
     return Math.min(valueLength, length - 1);
   }
 
-  if (state === 'active') {
+  if (appearance === 'active') {
     return 0;
   }
 
-  if (state === 'filled') {
+  if (appearance === 'filled') {
     return length - 1;
   }
 
@@ -127,7 +127,7 @@ export function OtpInput({
   helperText = 'Helper message',
   length = otpInputSpecs.length,
   value = '',
-  state,
+  appearance,
   fullWidth = false,
   disabled = false,
   onChangeText,
@@ -141,11 +141,11 @@ export function OtpInput({
 
   const resolvedValue = sanitizeValue(onChangeText ? value : internalValue, length);
   const normalizedHelper = normalizeHelper(helper);
-  const visualState = resolveVisualState(state, disabled, focused, resolvedValue, length);
+  const visualState = resolveVisualState(appearance, disabled, focused, resolvedValue, length);
   const styles = getOtpInputStyles(visualState, normalizedHelper, fullWidth);
   const isEditable = visualState !== 'disabled';
   const labelText = typeof label === 'string' ? label : 'Label';
-  const activeCellIndex = getActiveCellIndex(state, focused, resolvedValue.length, length);
+  const activeCellIndex = getActiveCellIndex(appearance, focused, resolvedValue.length, length);
 
   const borderAnims = useRef(Array.from({ length }, () => new Animated.Value(0))).current;
 
@@ -259,4 +259,4 @@ const componentStyles = StyleSheet.create({
 });
 
 export { getCellBorderColor, getOtpInputStyles, otpInputSpecs };
-export type { OtpInputHelper, OtpInputVisualState };
+export type { OtpInputHelper, OtpInputAppearanceValue };

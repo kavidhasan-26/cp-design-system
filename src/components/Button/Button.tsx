@@ -9,11 +9,11 @@ import {
   getButtonStyles,
   type ButtonHierarchy,
   type ButtonSize,
-  type ButtonVisualState,
+  type ButtonAppearanceValue,
 } from './buttonStyles';
 
-/** Matches Figma property: State */
-export type ButtonState = ButtonVisualState;
+/** Matches Figma property: Appearance */
+export type ButtonAppearance = ButtonAppearanceValue;
 
 export type ButtonProps = {
   /** Figma property: Label */
@@ -22,11 +22,11 @@ export type ButtonProps = {
   hierarchy?: ButtonHierarchy;
   /** Figma property: Size */
   size?: ButtonSize;
-  /** Figma property: State — locks appearance only for Hovered/Pressed or Disabled. Active allows live press feedback. */
-  state?: ButtonState;
+  /** Figma property: Appearance — locks appearance only for Hovered/Pressed or Disabled. Active allows live press feedback. */
+  appearance?: ButtonAppearance;
   /** Stretches the button to fill the width of its parent container. */
   fullWidth?: boolean;
-  /** Convenience alias for state="disabled" in app code. */
+  /** Convenience alias for appearance="disabled" in app code. */
   disabled?: boolean;
   onPress?: () => void;
   /** Figma property: Icon leading */
@@ -38,15 +38,15 @@ export type ButtonProps = {
 };
 
 function resolveVisualState(
-  state: ButtonState | undefined,
+  appearance: ButtonAppearance | undefined,
   disabled: boolean,
   pressed: boolean,
-): ButtonVisualState {
-  if (disabled || state === 'disabled') {
+): ButtonAppearanceValue {
+  if (disabled || appearance === 'disabled') {
     return 'disabled';
   }
 
-  if (state === 'hovered') {
+  if (appearance === 'hovered') {
     return 'hovered';
   }
 
@@ -57,14 +57,14 @@ function resolveVisualState(
   return 'active';
 }
 
-function getInteractionValue(visualState: ButtonVisualState): number {
+function getInteractionValue(visualState: ButtonAppearanceValue): number {
   return visualState === 'hovered' ? 1 : 0;
 }
 
 function getAnimatedContainerStyle(
   hierarchy: ButtonHierarchy,
   size: ButtonSize,
-  visualState: ButtonVisualState,
+  visualState: ButtonAppearanceValue,
   interactionAnim: Animated.Value,
 ) {
   const styles = getButtonStyles(hierarchy, size, 'active');
@@ -113,7 +113,7 @@ export function Button({
   label = 'Button',
   hierarchy = 'primary',
   size = 'normal',
-  state,
+  appearance,
   fullWidth = false,
   disabled = false,
   onPress,
@@ -124,8 +124,8 @@ export function Button({
 }: ButtonProps) {
   const [pressed, setPressed] = useState(false);
   const interactionAnim = useRef(new Animated.Value(0)).current;
-  const isDisabled = disabled || state === 'disabled';
-  const visualState = resolveVisualState(state, disabled, pressed);
+  const isDisabled = disabled || appearance === 'disabled';
+  const visualState = resolveVisualState(appearance, disabled, pressed);
   const styles = getButtonStyles(hierarchy, size, visualState);
   const animatedContainerStyle = getAnimatedContainerStyle(
     hierarchy,
@@ -180,4 +180,4 @@ const componentStyles = StyleSheet.create({
 });
 
 export { buttonSpecs, getButtonStyles };
-export type { ButtonHierarchy, ButtonSize, ButtonVisualState };
+export type { ButtonHierarchy, ButtonSize, ButtonAppearanceValue };

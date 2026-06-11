@@ -17,7 +17,7 @@ import {
 import { RollingAmount } from './RollingAmount';
 
 /** Matches Figma property: Visibility */
-export type AmountDisplayState = 'visible' | 'hidden';
+export type AmountDisplayVisibility = 'visible' | 'hidden';
 
 export type AmountDisplayProps = {
   /** Numeric amount rendered with Indian grouping. */
@@ -31,7 +31,7 @@ export type AmountDisplayProps = {
   /** Initial visibility when uncontrolled. Defaults to hidden for privacy. */
   defaultVisible?: boolean;
   /** Locks appearance for Storybook. Omit in app code for live toggle behavior. */
-  state?: AmountDisplayState;
+  visibility?: AmountDisplayVisibility;
   disabled?: boolean;
   onVisibilityChange?: (visible: boolean) => void;
   style?: StyleProp<ViewStyle>;
@@ -39,15 +39,15 @@ export type AmountDisplayProps = {
 };
 
 function resolveVisible(
-  state: AmountDisplayState | undefined,
+  visibility: AmountDisplayVisibility | undefined,
   visible: boolean | undefined,
   internalVisible: boolean,
 ): boolean {
-  if (state === 'visible') {
+  if (visibility === 'visible') {
     return true;
   }
 
-  if (state === 'hidden') {
+  if (visibility === 'hidden') {
     return false;
   }
 
@@ -60,7 +60,7 @@ export function AmountDisplay({
   showCurrency = true,
   visible,
   defaultVisible = false,
-  state,
+  visibility,
   disabled = false,
   onVisibilityChange,
   style,
@@ -72,10 +72,10 @@ export function AmountDisplay({
   const previousVisibleRef = useRef(defaultVisible);
   const settleProgress = useRef(new Animated.Value(defaultVisible ? 1 : 0)).current;
 
-  const resolvedVisible = resolveVisible(state, visible, internalVisible);
+  const resolvedVisible = resolveVisible(visibility, visible, internalVisible);
   const formattedAmount = formatIndianAmount(amount, decimals);
   const maskCount = getIndianAmountDigitCount(amount, decimals);
-  const isInteractive = !disabled && state === undefined;
+  const isInteractive = !disabled && visibility === undefined;
 
   useEffect(() => {
     if (resolvedVisible && !previousVisibleRef.current) {

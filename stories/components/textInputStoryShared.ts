@@ -1,5 +1,5 @@
 import type { ArgTypes } from '@storybook/react';
-import { TextInput, type TextInputState } from '../../src/components/TextInput';
+import { TextInput, type TextInputAppearance } from '../../src/components/TextInput';
 import { componentCanvasDecorator } from '../../src/storybook/ComponentCanvas';
 import {
   componentStoryParameters,
@@ -9,7 +9,7 @@ import {
   figmaTextArgType,
 } from '../../src/storybook/figmaControls';
 
-const stateOptions = [
+const appearanceOptions = [
   { value: 'enabled' as const, label: 'Enabled' },
   { value: 'active' as const, label: 'Active' },
   { value: 'filled' as const, label: 'Filled' },
@@ -64,7 +64,7 @@ export const textInputArgTypes = createFigmaArgTypes({
     description: 'Copy shown in the helper row when Helper is not None.',
     defaultValue: 'Helper message',
   }),
-  state: figmaSelectArgType('State', stateOptions, {
+  appearance: figmaSelectArgType('Appearance', appearanceOptions, {
     description:
       'Locks the visual appearance for Storybook. Active matches the focused state in app code — leave unset on Enabled to interact with focus, typing, and the purple border transition.',
     defaultValue: 'enabled',
@@ -109,14 +109,14 @@ export const textInputStoryParameters = {
 
 export const textInputDecorators = [componentCanvasDecorator()];
 
-export function textInputArgs(state?: TextInputState) {
+export function textInputArgs(appearance?: TextInputAppearance) {
   return {
     label: true,
     placeholder: 'Placeholder',
-    value: state === 'filled' ? 'Value' : '',
+    value: appearance === 'filled' ? 'Value' : '',
     helper: 'none' as const,
     helperText: 'Helper message',
-    ...(state ? { state } : {}),
+    ...(appearance ? { appearance } : {}),
     iconLeading: false,
     iconTrailing: false,
     fullWidth: false,

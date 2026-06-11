@@ -1,24 +1,24 @@
-import type { ButtonGroupCombination, ButtonGroupLayout, ButtonGroupPrimaryPosition } from './types';
+import type { ButtonGroupVariant, ButtonGroupLayout, ButtonGroupPrimaryPosition } from './types';
 
-export const rowCombinations: ButtonGroupCombination[] = ['primary-secondary', 'primary-tertiary'];
-export const columnTwoCombinations: ButtonGroupCombination[] = [
+export const rowVariants: ButtonGroupVariant[] = ['primary-secondary', 'primary-tertiary'];
+export const columnTwoVariants: ButtonGroupVariant[] = [
   'primary-secondary',
   'primary-tertiary',
   'secondary-secondary',
 ];
 
-export function getCombinationCount(combination: ButtonGroupCombination): 2 | 3 {
-  return combination === 'primary-secondary-tertiary' ? 3 : 2;
+export function getVariantButtonCount(variant: ButtonGroupVariant): 2 | 3 {
+  return variant === 'primary-secondary-tertiary' ? 3 : 2;
 }
 
-export function resolveCombination(
+export function resolveVariant(
   layout: ButtonGroupLayout,
   count: 2 | 3,
-  combination: ButtonGroupCombination | undefined,
-): ButtonGroupCombination {
+  variant: ButtonGroupVariant | undefined,
+): ButtonGroupVariant {
   if (layout === 'row') {
-    if (combination && rowCombinations.includes(combination)) {
-      return combination;
+    if (variant && rowVariants.includes(variant)) {
+      return variant;
     }
     return 'primary-secondary';
   }
@@ -27,8 +27,8 @@ export function resolveCombination(
     return 'primary-secondary-tertiary';
   }
 
-  if (combination && columnTwoCombinations.includes(combination)) {
-    return combination;
+  if (variant && columnTwoVariants.includes(variant)) {
+    return variant;
   }
 
   return 'primary-secondary';
@@ -37,25 +37,25 @@ export function resolveCombination(
 export function resolveCount(
   layout: ButtonGroupLayout,
   count: 2 | 3 | undefined,
-  combination: ButtonGroupCombination,
+  variant: ButtonGroupVariant,
 ): 2 | 3 {
-  const combinationCount = getCombinationCount(combination);
+  const variantCount = getVariantButtonCount(variant);
 
   if (layout === 'row') {
     return 2;
   }
 
   if (count === 2 || count === 3) {
-    if (count === 3 && combinationCount !== 3) {
-      return combinationCount;
+    if (count === 3 && variantCount !== 3) {
+      return variantCount;
     }
-    if (count === 2 && combinationCount === 3) {
+    if (count === 2 && variantCount === 3) {
       return 2;
     }
     return count;
   }
 
-  return combinationCount;
+  return variantCount;
 }
 
 export function resolvePrimaryPosition(
