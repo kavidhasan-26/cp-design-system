@@ -35,6 +35,18 @@ const preview: Preview = {
               'With Success',
               'With Hint',
             ],
+            'Phone Number Input',
+            [
+              'Overview',
+              'Enabled',
+              'Active',
+              'Filled',
+              'Loading',
+              'Disabled',
+              'With Error',
+              'With Success',
+              'With Hint',
+            ],
             'Otp Input',
             [
               'Overview',

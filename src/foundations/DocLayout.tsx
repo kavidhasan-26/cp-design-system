@@ -1,7 +1,41 @@
 import type { ReactNode } from 'react';
 import { useCallback, useState } from 'react';
-import { Pressable, ScrollView, Text, View } from 'react-native';
+import { Platform, Pressable, ScrollView, Text, View } from 'react-native';
 import { docStyles } from './docTheme';
+
+async function copyTextToClipboard(text: string): Promise<boolean> {
+  const value = text.trim();
+
+  if (Platform.OS === 'web' && typeof window !== 'undefined') {
+    if (window.navigator?.clipboard?.writeText) {
+      try {
+        await window.navigator.clipboard.writeText(value);
+        return true;
+      } catch {
+        // Fall through to execCommand for Storybook iframe restrictions.
+      }
+    }
+
+    try {
+      const textarea = window.document.createElement('textarea');
+      textarea.value = value;
+      textarea.setAttribute('readonly', '');
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      textarea.style.pointerEvents = 'none';
+      window.document.body.appendChild(textarea);
+      textarea.select();
+      textarea.setSelectionRange(0, value.length);
+      const copied = window.document.execCommand('copy');
+      window.document.body.removeChild(textarea);
+      return copied;
+    } catch {
+      return false;
+    }
+  }
+
+  return false;
+}
 
 type DocPageProps = {
   title: string;
@@ -56,12 +90,10 @@ export function CodeBlock({ children, copyable = false }: { children: string; co
   const [copied, setCopied] = useState(false);
 
   const handleCopy = useCallback(async () => {
-    try {
-      await navigator.clipboard.writeText(children.trim());
-      setCopied(true);
+    const didCopy = await copyTextToClipboard(children);
+    setCopied(didCopy);
+    if (didCopy) {
       setTimeout(() => setCopied(false), 2000);
-    } catch {
-      setCopied(false);
     }
   }, [children]);
 
@@ -71,6 +103,9 @@ export function CodeBlock({ children, copyable = false }: { children: string; co
 
   return (
     <View style={docStyles.codeBlockWrapper}>
+      <Text selectable style={docStyles.codeBlockText}>
+        {children}
+      </Text>
       <Pressable
         accessibilityLabel={copied ? 'Copied to clipboard' : 'Copy to clipboard'}
         accessibilityRole="button"
@@ -79,9 +114,6 @@ export function CodeBlock({ children, copyable = false }: { children: string; co
       >
         <Text style={docStyles.copyButtonLabel}>{copied ? 'Copied' : 'Copy'}</Text>
       </Pressable>
-      <Text selectable style={docStyles.codeBlockText}>
-        {children}
-      </Text>
     </View>
   );
 }
