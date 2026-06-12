@@ -21,6 +21,7 @@ import {
   type OtpInputHelper,
   type OtpInputAppearanceValue,
 } from './otpInputStyles';
+import { getWebTextInputStyle } from '../shared/webTextInputStyle';
 
 /** Matches Figma property: Appearance */
 export type OtpInputAppearance = OtpInputAppearanceValue;
@@ -149,14 +150,7 @@ export function OtpInput({
 
   const borderAnims = useRef(Array.from({ length }, () => new Animated.Value(0))).current;
 
-  const webInputStyle =
-    Platform.OS === 'web'
-      ? ({
-          caretColor: 'transparent',
-          cursor: 'text',
-          outlineWidth: 0,
-        } as unknown as TextStyle)
-      : undefined;
+  const webInputStyle = getWebTextInputStyle({ caretColor: 'transparent' });
 
   useEffect(() => {
     if (!onChangeText) {

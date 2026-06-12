@@ -25,6 +25,7 @@ import {
   type TextInputHelper,
   type TextInputAppearanceValue,
 } from './textInputStyles';
+import { getWebTextInputStyle } from '../shared/webTextInputStyle';
 
 /** Matches Figma property: Appearance */
 export type TextInputAppearance = TextInputAppearanceValue;
@@ -249,7 +250,7 @@ export function TextInput({
           placeholder={placeholder}
           placeholderTextColor={textInputSpecs.colors.placeholder}
           selectionColor={textInputSpecs.colors.borderActive}
-          style={[styles.input, webInputStyle]}
+          style={[styles.input, getWebTextInputStyle({ caretColor: textInputSpecs.colors.borderActive })]}
           underlineColorAndroid="transparent"
           value={resolvedValue}
         />
@@ -275,15 +276,6 @@ export function TextInput({
     </View>
   );
 }
-
-const webInputStyle =
-  Platform.OS === 'web'
-    ? ({
-        caretColor: textInputSpecs.colors.borderActive,
-        cursor: 'text',
-        outlineWidth: 0,
-      } as unknown as TextStyle)
-    : undefined;
 
 const componentStyles = StyleSheet.create({
   iconSlot: {

@@ -9,12 +9,12 @@ import {
   View,
   type StyleProp,
   type TextInputProps as RNTextInputProps,
-  type TextStyle,
   type ViewStyle,
 } from 'react-native';
 import { EyeClosedIcon, EyeOpenIcon } from '../icons/EyeIcons';
 import { CircleTickIcon } from '../icons/CircleTickIcon';
 import { WarningIcon } from '../icons/WarningIcon';
+import { getWebTextInputStyle } from '../shared/webTextInputStyle';
 import {
   getPasswordInputStyles,
   passwordInputSpecs,
@@ -245,7 +245,16 @@ export function PasswordInput({
           placeholderTextColor={textInputSpecs.colors.placeholder}
           secureTextEntry={!resolvedVisible}
           selectionColor={textInputSpecs.colors.borderActive}
-          style={[styles.input, componentStyles.inputWithToggle, webInputStyle(resolvedVisible)]}
+          style={[
+            styles.input,
+            componentStyles.inputWithToggle,
+            getWebTextInputStyle({
+              caretColor: textInputSpecs.colors.borderActive,
+              ...(Platform.OS === 'web'
+                ? { type: resolvedVisible ? 'text' : 'password' }
+                : null),
+            }),
+          ]}
           textContentType="password"
           underlineColorAndroid="transparent"
           value={resolvedValue}
@@ -284,16 +293,6 @@ export function PasswordInput({
     </View>
   );
 }
-
-const webInputStyle = (isVisible: boolean) =>
-  Platform.OS === 'web'
-    ? ({
-        caretColor: textInputSpecs.colors.borderActive,
-        cursor: 'text',
-        outlineWidth: 0,
-        type: isVisible ? 'text' : 'password',
-      } as unknown as TextStyle)
-    : undefined;
 
 const componentStyles = StyleSheet.create({
   inputWithToggle: {

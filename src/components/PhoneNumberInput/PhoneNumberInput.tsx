@@ -22,6 +22,7 @@ import {
   type PhoneNumberInputAppearanceValue,
   type PhoneNumberInputHelper,
 } from './phoneNumberInputStyles';
+import { getWebTextInputStyle } from '../shared/webTextInputStyle';
 
 /** Matches Figma property: Appearance */
 export type PhoneNumberInputAppearance = PhoneNumberInputAppearanceValue;
@@ -216,7 +217,7 @@ export function PhoneNumberInput({
           placeholder={placeholder}
           placeholderTextColor={textInputSpecs.colors.placeholder}
           selectionColor={textInputSpecs.colors.borderActive}
-          style={[styles.input, webInputStyle]}
+          style={[styles.input, getWebTextInputStyle({ caretColor: textInputSpecs.colors.borderActive })]}
           textContentType="telephoneNumber"
           underlineColorAndroid="transparent"
           value={resolvedValue}
@@ -239,15 +240,6 @@ export function PhoneNumberInput({
     </View>
   );
 }
-
-const webInputStyle =
-  Platform.OS === 'web'
-    ? ({
-        caretColor: textInputSpecs.colors.borderActive,
-        cursor: 'text',
-        outlineWidth: 0,
-      } as unknown as TextStyle)
-    : undefined;
 
 const componentStyles = StyleSheet.create({
   loader: {

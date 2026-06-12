@@ -31,12 +31,24 @@ export const Docs: Story = {
 
       <DocSection title="Expo setup">
         <Text style={docStyles.pageDescription}>
-          The package ships TypeScript source. Tell Expo to transpile it in app.json:
+          Add transpilePackages in app.json. Inter loads automatically on web when you import from
+          cp-design-system. On iOS and Android, wrap your app root with CpDesignSystemProvider
+          (requires expo-font).
         </Text>
+        <CodeBlock copyable>{`npx expo install expo-font`}</CodeBlock>
         <CodeBlock copyable>{`{
   "expo": {
     "transpilePackages": ["cp-design-system"]
   }
+}`}</CodeBlock>
+        <CodeBlock copyable>{`import { CpDesignSystemProvider } from 'cp-design-system';
+
+export default function App() {
+  return (
+    <CpDesignSystemProvider>
+      {/* your app */}
+    </CpDesignSystemProvider>
+  );
 }`}</CodeBlock>
       </DocSection>
 

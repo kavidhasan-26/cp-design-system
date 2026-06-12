@@ -1,5 +1,6 @@
 import type { Preview } from '@storybook/react';
 import { View } from 'react-native';
+import { CpDesignSystemProvider } from '../src/fonts/CpDesignSystemProvider';
 
 const preview: Preview = {
   parameters: {
@@ -84,15 +85,15 @@ const preview: Preview = {
     (Story, context) => {
       const isFoundation = context.title?.startsWith('Foundations/');
 
-      if (isFoundation) {
-        return (
-          <View style={{ flex: 1 }}>
-            <Story />
-          </View>
-        );
-      }
+      const story = isFoundation ? (
+        <View style={{ flex: 1 }}>
+          <Story />
+        </View>
+      ) : (
+        <Story />
+      );
 
-      return <Story />;
+      return <CpDesignSystemProvider>{story}</CpDesignSystemProvider>;
     },
   ],
 };

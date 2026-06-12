@@ -1,4 +1,6 @@
 import type { TextStyle } from 'react-native';
+import { Platform } from 'react-native';
+import { getInterFontFamily } from '../fonts/interFontFamily';
 import { typographyAliases, type TypographyAlias } from './aliases';
 
 export type TypographyStyleDefinition = {
@@ -23,9 +25,11 @@ function parseLetterSpacing(value: string, fontSize: number): number {
 }
 
 function createStyle(def: Omit<TypographyStyleDefinition, 'name' | 'token' | 'category'>): TextStyle {
+  const fontFamily = getInterFontFamily(def.fontWeight);
+
   return {
-    fontFamily: def.fontFamily,
-    fontWeight: def.fontWeight,
+    fontFamily,
+    ...(Platform.OS === 'web' ? { fontWeight: def.fontWeight } : null),
     fontSize: def.fontSize,
     letterSpacing: def.letterSpacing,
     lineHeight: def.fontSize,
