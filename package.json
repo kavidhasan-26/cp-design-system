@@ -1,25 +1,31 @@
 {
   "name": "cp-design-system",
   "version": "0.1.0",
-  "description": "Careena design system tokens and React Native components",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "description": "CP design system — React Native components and tokens",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "react-native": "src/index.ts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
+      "types": "./src/index.ts",
+      "react-native": "./src/index.ts",
+      "import": "./src/index.ts",
+      "require": "./src/index.ts",
+      "default": "./src/index.ts"
     },
     "./tokens": {
-      "types": "./dist/tokens/index.d.ts",
-      "default": "./dist/tokens/index.js"
+      "types": "./src/tokens/index.ts",
+      "default": "./src/tokens/index.ts"
     }
   },
   "files": [
-    "dist",
-    "src/tokens/figma-export.json"
+    "src/components",
+    "src/tokens",
+    "src/index.ts"
   ],
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
+    "prepack": "npm run build",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "typecheck": "tsc --noEmit"

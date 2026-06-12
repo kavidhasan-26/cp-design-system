@@ -29,6 +29,17 @@ export const Docs: Story = {
         <CodeBlock copyable>{`npm install github:kavidhasan-26/cp-design-system`}</CodeBlock>
       </DocSection>
 
+      <DocSection title="Expo setup">
+        <Text style={docStyles.pageDescription}>
+          The package ships TypeScript source. Tell Expo to transpile it in app.json:
+        </Text>
+        <CodeBlock copyable>{`{
+  "expo": {
+    "transpilePackages": ["cp-design-system"]
+  }
+}`}</CodeBlock>
+      </DocSection>
+
       <DocSection title="Naming conventions">
         <CodeBlock>{`Components
 - variant      Style variant (RadioButton, ButtonGroup)
