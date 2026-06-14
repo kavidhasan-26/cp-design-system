@@ -24,23 +24,43 @@
         padding: 0;
       }
 
-      /* Story canvas only — not docs */
-      .sb-show-main #storybook-root {
-        min-height: 100vh;
+      /*
+       * Docs render inside #storybook-root (.sbdocs is a child, not a parent).
+       * Never force viewport height on the root for docs pages.
+       */
+      #storybook-root:has(.sbdocs),
+      .sb-show-main:has(#storybook-root .sbdocs) {
+        min-height: auto !important;
+        height: auto !important;
       }
 
-      /* Keep docs page compact */
+      #storybook-root:has(.sbdocs) {
+        display: block;
+      }
+
+      /* Centered layout vertically centers the whole docs page — keep docs top-aligned */
+      .sb-show-main.sb-main-centered {
+        align-items: flex-start !important;
+        min-height: auto !important;
+      }
+
+      .sb-show-main.sb-main-centered #storybook-root {
+        margin: 0 !important;
+        max-height: none !important;
+        width: 100%;
+      }
+
+      /* Keep inline story embeds in docs compact */
       .sbdocs .docs-story,
       .sbdocs .docs-story > div,
       .sbdocs .innerZoomElementWrapper,
-      .sbdocs .innerZoomElementWrapper > div,
-      .sbdocs #storybook-root {
+      .sbdocs .innerZoomElementWrapper > div {
         min-height: unset !important;
         height: auto !important;
       }
 
       .sbdocs .sbdocs-content {
-        padding-top: 24px;
+        padding-top: 16px;
       }
 
       /* Remove browser focus ring from RN TextInput on web — field border handles focus. */

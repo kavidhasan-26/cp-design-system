@@ -109,7 +109,7 @@ export function createFigmaArgTypes<T extends ArgTypes>(argTypes: T): T {
 
 /** Shared parameters for component stories — Carbon-style canvas + bottom panel. */
 export const componentStoryParameters = {
-  layout: 'centered' as const,
+  layout: 'fullscreen' as const,
   controls: {
     expanded: true,
     sort: 'alpha' as const,

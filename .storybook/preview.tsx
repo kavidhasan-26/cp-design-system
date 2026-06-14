@@ -4,6 +4,7 @@ import { CpDesignSystemProvider } from '../src/fonts/CpDesignSystemProvider';
 
 const preview: Preview = {
   parameters: {
+    layout: 'fullscreen',
     controls: {
       expanded: true,
       sort: 'alpha',

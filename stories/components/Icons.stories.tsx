@@ -38,7 +38,7 @@ const iconGallerySections = [
 const meta = {
   title: 'Components/Icons',
   parameters: {
-    layout: 'centered',
+    layout: 'fullscreen',
     backgrounds: {
       default: 'canvas',
       values: [{ name: 'canvas', value: '#f4f4f4' }],
