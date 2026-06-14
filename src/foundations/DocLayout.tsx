@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { useCallback, useState } from 'react';
 import { Platform, Pressable, ScrollView, Text, View } from 'react-native';
-import { docStyles } from './docTheme';
+import { docStyles, docTheme } from './docTheme';
 
 async function copyTextToClipboard(text: string): Promise<boolean> {
   const value = text.trim();
@@ -86,7 +86,15 @@ export function TokenRow({ children, compact }: TokenRowProps) {
   return <View style={[docStyles.listRow, compact && docStyles.listRowCompact]}>{children}</View>;
 }
 
-export function CodeBlock({ children, copyable = false }: { children: string; copyable?: boolean }) {
+export function CodeBlock({
+  children,
+  copyable = false,
+  label,
+}: {
+  children: string;
+  copyable?: boolean;
+  label?: string;
+}) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = useCallback(async () => {
@@ -98,11 +106,17 @@ export function CodeBlock({ children, copyable = false }: { children: string; co
   }, [children]);
 
   if (!copyable) {
-    return <Text style={docStyles.codeBlock}>{children}</Text>;
+    return (
+      <View style={docStyles.codeBlockWrapper}>
+        {label ? <Text style={docStyles.codeBlockLabel}>{label}</Text> : null}
+        <Text style={[docStyles.codeBlockText, { paddingRight: docTheme.space.lg }]}>{children}</Text>
+      </View>
+    );
   }
 
   return (
     <View style={docStyles.codeBlockWrapper}>
+      {label ? <Text style={docStyles.codeBlockLabel}>{label}</Text> : null}
       <Text selectable style={docStyles.codeBlockText}>
         {children}
       </Text>
@@ -110,7 +124,11 @@ export function CodeBlock({ children, copyable = false }: { children: string; co
         accessibilityLabel={copied ? 'Copied to clipboard' : 'Copy to clipboard'}
         accessibilityRole="button"
         onPress={handleCopy}
-        style={({ pressed }) => [docStyles.copyButton, pressed ? { opacity: 0.8 } : null]}
+        style={({ pressed }) => [
+          docStyles.copyButton,
+          label ? { top: 44 } : null,
+          pressed ? { opacity: 0.8 } : null,
+        ]}
       >
         <Text style={docStyles.copyButtonLabel}>{copied ? 'Copied' : 'Copy'}</Text>
       </Pressable>
