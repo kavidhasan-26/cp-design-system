@@ -1,5 +1,6 @@
 export * from './Button';
 export * from './ButtonGroup';
+export * from './IconButton';
 export * from './RadioButton';
 export * from './TextInput';
 export * from './PhoneNumberInput';
@@ -7,4 +8,5 @@ export * from './PasswordInput';
 export * from './OtpInput';
 export * from './AmountDisplay';
 export * from './SegmentedControl';
+export * from './BottomSheet';
 export * from './icons';

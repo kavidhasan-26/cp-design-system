@@ -30,7 +30,6 @@ export const docStyles = StyleSheet.create({
   },
   content: {
     alignSelf: 'center',
-    gap: docTheme.layout.sectionGap,
     maxWidth: docTheme.layout.maxWidth,
     paddingHorizontal: docTheme.layout.pagePadding,
     paddingVertical: docTheme.layout.pagePadding,
@@ -38,6 +37,7 @@ export const docStyles = StyleSheet.create({
   },
   pageHeader: {
     gap: docTheme.space.sm,
+    marginBottom: docTheme.layout.sectionGap,
   },
   pageTitle: {
     color: docTheme.colors.text,

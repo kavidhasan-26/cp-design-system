@@ -1,5 +1,6 @@
 import { Text, View } from 'react-native';
-import { CodeBlock, DocPage, DocSection } from './DocLayout';
+import { DocBlockStack, DocCodeBlock, DocSection } from '../storybook/DocCodeBlock';
+import { DocPage } from './DocLayout';
 import { docStyles } from './docTheme';
 
 const STORYBOOK_URL = 'https://kavidhasan-26.github.io/cp-design-system/';
@@ -84,24 +85,26 @@ export function IntroPage() {
       description="React Native components and tokens from Figma."
     >
       <DocSection title="Storybook">
-        <CodeBlock copyable>{STORYBOOK_URL}</CodeBlock>
+        <DocCodeBlock>{STORYBOOK_URL}</DocCodeBlock>
       </DocSection>
 
       <DocSection title="Install">
-        <CodeBlock copyable>{`npm install github:kavidhasan-26/cp-design-system`}</CodeBlock>
+        <DocCodeBlock>{`npm install github:kavidhasan-26/cp-design-system`}</DocCodeBlock>
       </DocSection>
 
       <DocSection title="Update">
         <Text style={docStyles.pageDescription}>
           Run install again to get the latest version. In production, pin a tag in package.json.
         </Text>
-        <CodeBlock copyable>{`npm install github:kavidhasan-26/cp-design-system
+        <DocBlockStack>
+          <DocCodeBlock>{`npm install github:kavidhasan-26/cp-design-system
 
 "cp-design-system": "github:kavidhasan-26/cp-design-system#v0.1.0"
 npm install github:kavidhasan-26/cp-design-system#v0.1.1
 npm install github:kavidhasan-26/cp-design-system --force
-npx expo start -c`}</CodeBlock>
-        <CodeBlock copyable>{`npm uninstall cp-design-system`}</CodeBlock>
+npx expo start -c`}</DocCodeBlock>
+          <DocCodeBlock>{`npm uninstall cp-design-system`}</DocCodeBlock>
+        </DocBlockStack>
       </DocSection>
 
       <DocSection title="Expo setup">
@@ -109,13 +112,14 @@ npx expo start -c`}</CodeBlock>
           Add transpilePackages. Wrap the app in CpDesignSystemProvider on iOS and Android. Inter
           loads on web when you import the package.
         </Text>
-        <CodeBlock copyable>{`npx expo install expo-font`}</CodeBlock>
-        <CodeBlock copyable>{`{
+        <DocBlockStack>
+          <DocCodeBlock>{`npx expo install expo-font`}</DocCodeBlock>
+          <DocCodeBlock>{`{
   "expo": {
     "transpilePackages": ["cp-design-system"]
   }
-}`}</CodeBlock>
-        <CodeBlock copyable>{`import { CpDesignSystemProvider } from 'cp-design-system';
+}`}</DocCodeBlock>
+          <DocCodeBlock>{`import { CpDesignSystemProvider } from 'cp-design-system';
 
 export default function App() {
   return (
@@ -123,7 +127,8 @@ export default function App() {
       {/* your app */}
     </CpDesignSystemProvider>
   );
-}`}</CodeBlock>
+}`}</DocCodeBlock>
+        </DocBlockStack>
       </DocSection>
 
       <DocSection
@@ -150,11 +155,11 @@ export default function App() {
         </View>
 
         <Text style={docStyles.subsectionTitle}>Quick reference</Text>
-        <CodeBlock copyable>{namingReference}</CodeBlock>
+        <DocCodeBlock>{namingReference}</DocCodeBlock>
       </DocSection>
 
       <DocSection title="Usage">
-        <CodeBlock copyable>{usageExample}</CodeBlock>
+        <DocCodeBlock>{usageExample}</DocCodeBlock>
       </DocSection>
 
       <DocSection title="Tokens">

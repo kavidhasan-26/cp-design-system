@@ -25,6 +25,8 @@ const preview: Preview = {
           [
             'Button',
             ['Overview', 'Primary', 'Secondary', 'Tertiary'],
+            'Icon Button',
+            ['Overview', 'Default', 'Ghost'],
             'Text Input',
             [
               'Overview',
@@ -100,6 +102,17 @@ const preview: Preview = {
               'Long Labels',
               'Full Width',
               'Interactive',
+            ],
+            'Bottom Sheet',
+            [
+              'Overview',
+              'Fixed Button Group',
+              'Fixed Primary',
+              'Inline Primary',
+              'Medium Height Scroll',
+              'Large Height Scroll',
+              'Custom Background',
+              'Fit Content Max Height',
             ],
             'Icons',
             ['Overview', 'Sizes', 'Colors'],

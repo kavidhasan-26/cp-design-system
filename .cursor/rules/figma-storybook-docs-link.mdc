@@ -1,0 +1,44 @@
+---
+description: Add Figma Dev Mode documentation links when coding new components
+globs: stories/components/**,src/components/**
+alwaysApply: false
+---
+
+# Figma documentation link for new components
+
+When a **new component is coded** (implementation + Storybook), also link it in Figma Dev Mode. Skip Figma-only components that are not built in code yet (e.g. Snackbar, pill).
+
+## Checklist (required before marking the task done)
+
+1. **Storybook docs** — add an entry to `src/storybook/componentDocumentation.ts` (import + usage snippets) and an `Overview` story with `parameters.design.url` pointing at the Figma component set:
+   ```ts
+   import { figmaComponentUrl } from '../../src/storybook/figmaDocumentation';
+
+   parameters: {
+     design: {
+       type: 'figma',
+       url: figmaComponentUrl('347:584'), // Figma node id with colon
+     },
+   }
+   ```
+
+2. **Story title** — note the component’s Storybook title (e.g. `Components/Bottom Sheet`). Docs id follows `components-bottom-sheet--docs` after `npm run build-storybook`.
+
+3. **Figma** — add the target to `figmaComponentDocumentationTargets` in `src/storybook/figmaDocumentation.ts`, then set `documentationLinks` on the **COMPONENT_SET** via `use_figma`:
+   ```js
+   import { storybookDocsUrl } from './figmaDocumentation'; // in plugin code, inline the URL
+
+   const node = await figma.getNodeByIdAsync('347:584');
+   node.documentationLinks = [{
+     uri: 'https://kavidhasan-26.github.io/cp-design-system/?path=/docs/components-bottom-sheet--docs',
+   }];
+   ```
+   Use `figmaDocumentationLinkForComponent('Components/Bottom Sheet')` or `storybookDocsUrl('Components/Bottom Sheet')` from `src/storybook/figmaDocumentation.ts`.
+
+4. **Verify** — in Figma Dev Mode, select an instance → Inspect → documentation link opens the **Docs** tab (Import, Usage, Properties, Stories). Do **not** link to `--overview` stories.
+
+## Do not
+
+- Add Figma doc links for foundation tokens unless explicitly requested.
+- Add links to Figma components that have no coded Storybook story yet.
+- Use `--overview` story ids for Figma `documentationLinks` — always use the Docs page (`/docs/components-*--docs`).

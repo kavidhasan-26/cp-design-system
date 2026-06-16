@@ -17,6 +17,7 @@ import {
   WarningTriangleIcon,
 } from '../../src/components/icons';
 import { componentCanvasDecorator } from '../../src/storybook/ComponentCanvas';
+import { ComponentDocsPage } from '../../src/storybook/ComponentDocsPage';
 import { IconGallery } from '../../src/storybook/IconGallery';
 
 const iconGallerySections = [
@@ -45,8 +46,15 @@ const iconGallerySections = [
 
 const meta = {
   title: 'Components/Icons',
+  tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
+    docs: {
+      page: ComponentDocsPage,
+      description: {
+        component: 'SVG icons from the design system. Import by name from the package root.',
+      },
+    },
     backgrounds: {
       default: 'canvas',
       values: [{ name: 'canvas', value: '#f4f4f4' }],
