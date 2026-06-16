@@ -7,6 +7,7 @@ import {
   figmaBooleanArgType,
   figmaSelectArgType,
   figmaTextArgType,
+  normalLargeSizeOptions,
 } from '../../src/storybook/figmaControls';
 
 const appearanceOptions = [
@@ -33,6 +34,10 @@ export const passwordInputArgTypes = createFigmaArgTypes({
     description: 'When true, renders the field label above the input.',
     defaultValue: true,
   }),
+  labelText: figmaTextArgType('Label text', {
+    description: 'Copy shown in the field label when Label is true.',
+    defaultValue: 'Label',
+  }),
   placeholder: figmaTextArgType('Placeholder', {
     description: 'Placeholder copy shown when the field is empty.',
     defaultValue: 'Password',
@@ -53,6 +58,10 @@ export const passwordInputArgTypes = createFigmaArgTypes({
     description:
       'Locks the visual appearance for Storybook. Active matches the focused state in app code — leave unset on Enabled to interact with focus, typing, and the purple border transition.',
     defaultValue: 'enabled',
+  }),
+  size: figmaSelectArgType('Size', normalLargeSizeOptions, {
+    description: 'Normal uses 14px vertical padding. Large uses 16px (space-8) vertical padding.',
+    defaultValue: 'normal',
   }),
   visibility: figmaSelectArgType('Visibility', visibilityOptions, {
     description:
@@ -85,14 +94,19 @@ export const passwordInputStoryParameters = {
 
 export const passwordInputDecorators = [componentCanvasDecorator()];
 
-export function passwordInputArgs(appearance?: PasswordInputAppearance) {
+export function passwordInputArgs(
+  appearance?: PasswordInputAppearance,
+  size: 'normal' | 'large' = 'normal',
+) {
   return {
     label: true,
+    labelText: 'Label',
     placeholder: 'Password',
     ...(appearance === 'filled' ? { value: 'Password123' } : {}),
     helper: 'none' as const,
     helperText: 'Helper message',
     ...(appearance ? { appearance } : {}),
+    size,
     fullWidth: false,
   };
 }

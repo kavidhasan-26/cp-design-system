@@ -9,6 +9,7 @@ import {
   textInputSpecs,
   type TextInputAppearanceValue,
   type TextInputHelper,
+  type TextInputSize,
 } from '../TextInput/textInputStyles';
 
 /** Phone-number input specs — field chrome matches Text Input; Figma component set (node 212:459). */
@@ -26,8 +27,9 @@ export function getPhoneNumberInputStyles(
   helper: TextInputHelper,
   hasValue: boolean,
   fullWidth: boolean,
+  size: TextInputSize = 'normal',
 ) {
-  const textInputStyles = getTextInputStyles(visualState, helper, hasValue, fullWidth);
+  const textInputStyles = getTextInputStyles(visualState, helper, hasValue, fullWidth, size);
 
   return {
     ...textInputStyles,

@@ -6,4 +6,5 @@ export * from './PhoneNumberInput';
 export * from './PasswordInput';
 export * from './OtpInput';
 export * from './AmountDisplay';
+export * from './SegmentedControl';
 export * from './icons';

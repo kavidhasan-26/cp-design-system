@@ -8,6 +8,7 @@ import { getTypographyStyle } from '../../tokens/typography';
 
 export type TextInputAppearanceValue = 'enabled' | 'active' | 'filled' | 'loading' | 'disabled';
 export type TextInputHelper = 'none' | 'error' | 'success' | 'hint';
+export type TextInputSize = 'normal' | 'large';
 
 /** Pixel-perfect text-input specs extracted from Figma component set (node 65:27). */
 export const textInputSpecs = {
@@ -16,7 +17,10 @@ export const textInputSpecs = {
   helperGap: space[2],
   fieldPadding: {
     horizontal: space[5],
-    vertical: space[7],
+    vertical: {
+      normal: space[7],
+      large: space[8],
+    },
   },
   borderRadius: radius[2],
   borderWidth: 1,
@@ -109,6 +113,7 @@ export function getTextInputStyles(
   helper: TextInputHelper,
   hasValue: boolean,
   fullWidth: boolean,
+  size: TextInputSize = 'normal',
 ): TextInputStyleConfig {
   const fieldBorderColor = getFieldBorderColor(visualState, helper);
 
@@ -132,7 +137,7 @@ export function getTextInputStyles(
       gap: textInputSpecs.fieldGap,
       opacity: visualState === 'disabled' ? textInputSpecs.disabledOpacity : 1,
       paddingHorizontal: textInputSpecs.fieldPadding.horizontal,
-      paddingVertical: textInputSpecs.fieldPadding.vertical,
+      paddingVertical: textInputSpecs.fieldPadding.vertical[size],
     },
     input: {
       ...textInputSpecs.inputStyle,

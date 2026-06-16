@@ -4,16 +4,19 @@ import {
   isRadioButtonSelected,
   radioButtonSpecs,
   resolveRadioButtonVariant,
+  type RadioButtonSize,
   type RadioButtonVariant,
 } from './radioButtonStyles';
 
-export type { RadioButtonVariant };
+export type { RadioButtonVariant, RadioButtonSize };
 
 export type RadioButtonProps = {
   /** Figma property: Label */
   label?: string;
   /** Figma property: Variant — locks appearance for Storybook/docs. Omit in app code to derive from selected, bordered, and disabled. */
   variant?: RadioButtonVariant;
+  /** Figma property: Size — normal or large vertical padding. */
+  size?: RadioButtonSize;
   /** Whether the option is selected. */
   selected?: boolean;
   /** When false, renders the plain (no border) variant. Defaults to true. */
@@ -30,6 +33,7 @@ export type RadioButtonProps = {
 export function RadioButton({
   label = 'Label',
   variant,
+  size = 'normal',
   selected = false,
   bordered = true,
   disabled = false,
@@ -39,7 +43,7 @@ export function RadioButton({
   testID,
 }: RadioButtonProps) {
   const visualVariant = resolveRadioButtonVariant(variant, disabled, selected, bordered);
-  const stylesForType = getRadioButtonStyles(visualVariant);
+  const stylesForType = getRadioButtonStyles(visualVariant, size);
   const isSelected = isRadioButtonSelected(visualVariant);
   const isDisabled = visualVariant === 'disabled';
 

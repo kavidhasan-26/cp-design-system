@@ -22,14 +22,17 @@ import {
   type PhoneNumberInputAppearanceValue,
   type PhoneNumberInputHelper,
 } from './phoneNumberInputStyles';
+import type { TextInputSize } from '../TextInput/textInputStyles';
 import { getWebTextInputStyle } from '../shared/webTextInputStyle';
 
 /** Matches Figma property: Appearance */
 export type PhoneNumberInputAppearance = PhoneNumberInputAppearanceValue;
 
 export type PhoneNumberInputProps = {
-  /** Figma property: Label — when true, renders the default "Label" copy. Pass a string to customize. */
-  label?: boolean | string;
+  /** Figma property: Label — when true, renders the field label above the input. */
+  label?: boolean;
+  /** Figma property: Label text */
+  labelText?: string;
   /** Figma property: Helper */
   helper?: PhoneNumberInputHelper;
   /** Figma property: Helper text */
@@ -42,6 +45,8 @@ export type PhoneNumberInputProps = {
   value?: string;
   /** Figma property: Appearance — locks appearance for Storybook/docs. Omit in app code for live focus/value behavior. */
   appearance?: PhoneNumberInputAppearance;
+  /** Figma property: Size — normal or large field height. */
+  size?: TextInputSize;
   /** Stretches the input to fill the width of its parent container. */
   fullWidth?: boolean;
   /** Convenience alias for appearance="disabled" in app code. */
@@ -118,12 +123,14 @@ function getBorderAnimationValue(
 
 export function PhoneNumberInput({
   label = true,
+  labelText = 'Label',
   helper = 'none',
   helperText = 'Helper message',
   countryCode = phoneNumberInputSpecs.defaultCountryCode,
   placeholder = phoneNumberInputSpecs.defaultPlaceholder,
   value = '',
   appearance,
+  size = 'normal',
   fullWidth = false,
   disabled = false,
   maxLength = phoneNumberInputSpecs.maxLength,
@@ -143,10 +150,9 @@ export function PhoneNumberInput({
   const borderAnim = useRef(
     new Animated.Value(getBorderAnimationValue(visualState, normalizedHelper)),
   ).current;
-  const styles = getPhoneNumberInputStyles(visualState, normalizedHelper, hasValue, fullWidth);
+  const styles = getPhoneNumberInputStyles(visualState, normalizedHelper, hasValue, fullWidth, size);
   const isEditable = visualState !== 'disabled' && visualState !== 'loading';
   const showLoadingIndicator = visualState === 'loading';
-  const labelText = typeof label === 'string' ? label : 'Label';
 
   const borderColor = borderAnim.interpolate({
     inputRange: [0, 1, 2],

@@ -13,8 +13,11 @@ export const radioButtonSpecs = {
   indicatorBorderWidth: 0.875,
   indicatorSize: space[7],
   indicatorDotSize: 9,
-  /** Space-6 — vertical padding on all variants. */
-  paddingVertical: space[6],
+  /** Space-6 — vertical padding on normal size. */
+  paddingVertical: {
+    normal: space[6],
+    large: space[8],
+  },
   /** Space-5 — horizontal padding on bordered variants. */
   paddingHorizontal: space[5],
   /** Space-0 — horizontal padding on no-borders variants. */
@@ -29,6 +32,8 @@ export type RadioButtonVariant =
   | 'disabled'
   | 'unselected-plain'
   | 'selected-plain';
+
+export type RadioButtonSize = 'normal' | 'large';
 
 type RadioButtonStyleConfig = {
   container: ViewStyle;
@@ -45,12 +50,15 @@ function isSelected(variant: RadioButtonVariant): boolean {
   return variant === 'selected' || variant === 'selected-plain';
 }
 
-export function getRadioButtonStyles(variant: RadioButtonVariant): RadioButtonStyleConfig {
+export function getRadioButtonStyles(
+  variant: RadioButtonVariant,
+  size: RadioButtonSize = 'normal',
+): RadioButtonStyleConfig {
   const baseContainer: ViewStyle = {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingVertical: radioButtonSpecs.paddingVertical,
+    paddingVertical: radioButtonSpecs.paddingVertical[size],
     borderRadius: radioButtonSpecs.borderRadius,
   };
 

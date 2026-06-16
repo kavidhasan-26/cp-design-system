@@ -47,8 +47,21 @@ export const Overview: Story = {
       <TextInput label value="Value" appearance="filled" />
       <TextInput label placeholder="Placeholder" appearance="loading" />
       <TextInput label placeholder="Placeholder" appearance="disabled" />
+      <TextInput label placeholder="Placeholder" appearance="enabled" size="large" />
     </View>
   ),
+};
+
+export const Large: Story = {
+  args: textInputArgs('enabled', 'large'),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Large size — 16px vertical padding (space[8]). Horizontal padding stays 10px.',
+      },
+    },
+  },
 };
 
 export const Enabled: Story = {

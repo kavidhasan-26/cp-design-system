@@ -24,6 +24,7 @@ import {
   textInputSpecs,
   type TextInputHelper,
   type TextInputAppearanceValue,
+  type TextInputSize,
 } from './textInputStyles';
 import { getWebTextInputStyle } from '../shared/webTextInputStyle';
 
@@ -34,8 +35,10 @@ export type TextInputAppearance = TextInputAppearanceValue;
 export type TextInputTextCase = 'default' | 'uppercase' | 'lowercase' | 'capitalize' | 'none';
 
 export type TextInputProps = {
-  /** Figma property: Label — when true, renders the default "Label" copy. Pass a string to customize. */
-  label?: boolean | string;
+  /** Figma property: Label — when true, renders the field label above the input. */
+  label?: boolean;
+  /** Figma property: Label text */
+  labelText?: string;
   /** Figma property: Helper */
   helper?: TextInputHelper;
   /** Figma property: Helper text */
@@ -46,6 +49,8 @@ export type TextInputProps = {
   value?: string;
   /** Figma property: Appearance — locks appearance for Storybook/docs. Omit in app code for live focus/value behavior. */
   appearance?: TextInputAppearance;
+  /** Figma property: Size — normal or large field height. */
+  size?: TextInputSize;
   /** Stretches the input to fill the width of its parent container. */
   fullWidth?: boolean;
   /** Convenience alias for state="disabled" in app code. */
@@ -147,11 +152,13 @@ function applyTextCase(value: string, textCase: TextInputTextCase): string {
 
 export function TextInput({
   label = true,
+  labelText = 'Label',
   helper = 'none',
   helperText = 'Helper message',
   placeholder = 'Placeholder',
   value = '',
   appearance,
+  size = 'normal',
   fullWidth = false,
   disabled = false,
   iconLeading,
@@ -174,10 +181,9 @@ export function TextInput({
   const borderAnim = useRef(
     new Animated.Value(getBorderAnimationValue(visualState, normalizedHelper)),
   ).current;
-  const styles = getTextInputStyles(visualState, normalizedHelper, hasValue, fullWidth);
+  const styles = getTextInputStyles(visualState, normalizedHelper, hasValue, fullWidth, size);
   const isEditable = visualState !== 'disabled' && visualState !== 'loading';
   const showLoadingIndicator = visualState === 'loading';
-  const labelText = typeof label === 'string' ? label : 'Label';
 
   const borderColor = borderAnim.interpolate({
     inputRange: [0, 1, 2],
@@ -291,4 +297,4 @@ const componentStyles = StyleSheet.create({
 });
 
 export { ArrowRightIcon, getFieldBorderColor, getTextInputStyles, textInputSpecs };
-export type { TextInputHelper, TextInputAppearanceValue };
+export type { TextInputHelper, TextInputAppearanceValue, TextInputSize };

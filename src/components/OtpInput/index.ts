@@ -4,4 +4,5 @@ export type {
   OtpInputProps,
   OtpInputAppearance,
   OtpInputAppearanceValue,
+  OtpInputSize,
 } from './OtpInput';

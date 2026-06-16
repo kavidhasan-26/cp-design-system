@@ -5,4 +5,5 @@ export type {
   TextInputAppearance,
   TextInputTextCase,
   TextInputAppearanceValue,
+  TextInputSize,
 } from './TextInput';

@@ -15,7 +15,7 @@ type FigmaSelectConfig<T extends string> = {
 
 export function figmaSelectArgType<T extends string>(
   name: string,
-  options: FigmaSelectOption<T>[],
+  options: readonly FigmaSelectOption<T>[],
   config: FigmaSelectConfig<T>,
 ) {
   const labels = Object.fromEntries(options.map((option) => [option.value, option.label])) as Record<T, string>;
@@ -27,7 +27,7 @@ export function figmaSelectArgType<T extends string>(
     options: options.map((option) => option.value),
     labels,
     table: {
-      category: config.category ?? 'Figma properties',
+      category: config.category ?? 'Properties',
       type: { summary: options.map((option) => option.label).join(' | ') },
       defaultValue: { summary: labels[config.defaultValue] ?? config.defaultValue },
     },
@@ -46,7 +46,7 @@ export function figmaBooleanArgType(name: string, config: FigmaBooleanConfig) {
     description: config.description,
     control: { type: 'boolean' as const },
     table: {
-      category: config.category ?? 'Figma properties',
+      category: config.category ?? 'Properties',
       type: { summary: 'boolean' },
       defaultValue: { summary: String(config.defaultValue ?? false) },
     },
@@ -65,7 +65,7 @@ export function figmaTextArgType(name: string, config: FigmaTextConfig) {
     description: config.description,
     control: { type: 'text' as const },
     table: {
-      category: config.category ?? 'Figma properties',
+      category: config.category ?? 'Properties',
       type: { summary: 'string' },
       defaultValue: { summary: config.defaultValue ? `"${config.defaultValue}"` : 'undefined' },
     },
@@ -84,7 +84,7 @@ export function figmaNumberArgType(name: string, config: FigmaNumberConfig) {
     description: config.description,
     control: { type: 'number' as const },
     table: {
-      category: config.category ?? 'Figma properties',
+      category: config.category ?? 'Properties',
       type: { summary: 'number' },
       defaultValue: { summary: String(config.defaultValue ?? 0) },
     },
@@ -106,6 +106,11 @@ export function figmaActionArgType(name: string, description: string) {
 export function createFigmaArgTypes<T extends ArgTypes>(argTypes: T): T {
   return argTypes;
 }
+
+export const normalLargeSizeOptions = [
+  { value: 'normal' as const, label: 'Normal' },
+  { value: 'large' as const, label: 'Large' },
+] as const;
 
 /** Shared parameters for component stories — Carbon-style canvas + bottom panel. */
 export const componentStoryParameters = {

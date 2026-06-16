@@ -10,7 +10,11 @@ import {
   EditIcon,
   EyeClosedIcon,
   EyeOpenIcon,
+  InfoIcon,
+  LoopIcon,
+  SearchIcon,
   WarningIcon,
+  WarningTriangleIcon,
 } from '../../src/components/icons';
 import { componentCanvasDecorator } from '../../src/storybook/ComponentCanvas';
 import { IconGallery } from '../../src/storybook/IconGallery';
@@ -24,6 +28,9 @@ const iconGallerySections = [
       { name: 'edit', icon: <EditIcon /> },
       { name: 'eye-open', icon: <EyeOpenIcon /> },
       { name: 'eye-closed', icon: <EyeClosedIcon /> },
+      { name: 'search', icon: <SearchIcon /> },
+      { name: 'info', icon: <InfoIcon /> },
+      { name: 'loop', icon: <LoopIcon /> },
     ],
   },
   {
@@ -31,6 +38,7 @@ const iconGallerySections = [
     items: [
       { name: 'circle-tick', icon: <CircleTickIcon /> },
       { name: 'warning', icon: <WarningIcon /> },
+      { name: 'warning-triangle', icon: <WarningTriangleIcon /> },
     ],
   },
 ];

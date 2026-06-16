@@ -59,7 +59,7 @@ export const buttonGroupArgTypes = createFigmaArgTypes({
     control: { type: 'select' },
     options: [2, 3],
     table: {
-      category: 'Figma properties',
+      category: 'Properties',
       type: { summary: '2 | 3' },
       defaultValue: { summary: '2' },
     },

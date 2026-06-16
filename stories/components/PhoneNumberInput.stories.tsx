@@ -51,8 +51,21 @@ export const Overview: Story = {
       <PhoneNumberInput label value="9876543210" appearance="filled" />
       <PhoneNumberInput label appearance="loading" />
       <PhoneNumberInput label appearance="disabled" />
+      <PhoneNumberInput label appearance="enabled" size="large" />
     </View>
   ),
+};
+
+export const Large: Story = {
+  args: phoneNumberInputArgs('enabled', 'large'),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Large size — 16px vertical padding (space[8]). Horizontal padding stays 10px.',
+      },
+    },
+  },
 };
 
 export const Enabled: Story = {

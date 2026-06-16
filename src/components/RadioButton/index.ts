@@ -4,5 +4,6 @@ export {
   isRadioButtonSelected,
   radioButtonSpecs,
   resolveRadioButtonVariant,
+  type RadioButtonSize,
   type RadioButtonVariant,
 } from './radioButtonStyles';

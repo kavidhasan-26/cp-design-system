@@ -22,6 +22,7 @@ import {
   type PasswordInputAppearanceValue,
   type PasswordInputHelper,
 } from './passwordInputStyles';
+import type { TextInputSize } from '../TextInput/textInputStyles';
 
 /** Matches Figma property: Appearance */
 export type PasswordInputAppearance = PasswordInputAppearanceValue;
@@ -30,8 +31,10 @@ export type PasswordInputAppearance = PasswordInputAppearanceValue;
 export type PasswordInputVisibility = 'hidden' | 'visible';
 
 export type PasswordInputProps = {
-  /** Figma property: Label — when true, renders the default "Label" copy. Pass a string to customize. */
-  label?: boolean | string;
+  /** Figma property: Label — when true, renders the field label above the input. */
+  label?: boolean;
+  /** Figma property: Label text */
+  labelText?: string;
   /** Figma property: Helper */
   helper?: PasswordInputHelper;
   /** Figma property: Helper text */
@@ -42,6 +45,8 @@ export type PasswordInputProps = {
   value?: string;
   /** Figma property: Appearance — locks appearance for Storybook/docs. Omit in app code for live focus/value behavior. */
   appearance?: PasswordInputAppearance;
+  /** Figma property: Size — normal or large field height. */
+  size?: TextInputSize;
   /** Figma property: Visibility — locks visibility for Storybook/docs. Omit in app code for live toggle behavior. */
   visibility?: PasswordInputVisibility;
   /** Controlled password visibility. */
@@ -130,11 +135,13 @@ function getBorderAnimationValue(
 
 export function PasswordInput({
   label = true,
+  labelText = 'Label',
   helper = 'none',
   helperText = 'Helper message',
   placeholder = passwordInputSpecs.defaultPlaceholder,
   value,
   appearance,
+  size = 'normal',
   visibility,
   visible,
   defaultVisible = false,
@@ -161,8 +168,7 @@ export function PasswordInput({
   const borderAnim = useRef(
     new Animated.Value(getBorderAnimationValue(visualState, normalizedHelper)),
   ).current;
-  const styles = getPasswordInputStyles(visualState, normalizedHelper, hasValue, fullWidth);
-  const labelText = typeof label === 'string' ? label : 'Label';
+  const styles = getPasswordInputStyles(visualState, normalizedHelper, hasValue, fullWidth, size);
   const iconColor = textInputSpecs.colors.placeholder;
 
   const borderColor = borderAnim.interpolate({

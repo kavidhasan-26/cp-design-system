@@ -6,6 +6,7 @@ import {
   getTextInputStyles,
   textInputSpecs,
   type TextInputHelper,
+  type TextInputSize,
 } from '../TextInput/textInputStyles';
 
 export type PasswordInputAppearanceValue = 'enabled' | 'active' | 'filled' | 'disabled';
@@ -22,8 +23,9 @@ export function getPasswordInputStyles(
   helper: PasswordInputHelper,
   hasValue: boolean,
   fullWidth: boolean,
+  size: TextInputSize = 'normal',
 ) {
-  return getTextInputStyles(visualState, helper, hasValue, fullWidth);
+  return getTextInputStyles(visualState, helper, hasValue, fullWidth, size);
 }
 
 export {

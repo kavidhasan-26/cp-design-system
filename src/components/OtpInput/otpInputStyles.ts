@@ -8,6 +8,7 @@ import { getTypographyStyle } from '../../tokens/typography';
 
 export type OtpInputAppearanceValue = 'enabled' | 'active' | 'filled' | 'disabled';
 export type OtpInputHelper = 'none' | 'error' | 'success' | 'hint';
+export type OtpInputSize = 'normal' | 'large';
 
 /** Pixel-perfect OTP specs extracted from Figma component set (node 70:114). */
 export const otpInputSpecs = {
@@ -16,7 +17,10 @@ export const otpInputSpecs = {
   cellGap: space[4],
   helperGap: space[2],
   successIconSize: 12,
-  cellSize: 46,
+  cellSize: {
+    normal: 46,
+    large: 52,
+  },
   borderRadius: radius[2],
   borderWidth: 1,
   disabledOpacity: 0.7,
@@ -81,8 +85,10 @@ export function getOtpInputStyles(
   visualState: OtpInputAppearanceValue,
   helper: OtpInputHelper,
   fullWidth: boolean,
+  size: OtpInputSize = 'normal',
 ): OtpInputStyleConfig {
   const isDisabled = visualState === 'disabled';
+  const cellSize = otpInputSpecs.cellSize[size];
 
   return {
     root: {
@@ -106,9 +112,9 @@ export function getOtpInputStyles(
         : otpInputSpecs.colors.cellBackground,
       borderRadius: otpInputSpecs.borderRadius,
       borderWidth: otpInputSpecs.borderWidth,
-      height: otpInputSpecs.cellSize,
+      height: cellSize,
       justifyContent: 'center',
-      width: otpInputSpecs.cellSize,
+      width: cellSize,
     },
     cellText: {
       ...otpInputSpecs.digitStyle,

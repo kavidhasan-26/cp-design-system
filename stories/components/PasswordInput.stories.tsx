@@ -67,8 +67,21 @@ export const Overview: Story = {
       <PasswordInput label appearance="active" visibility="hidden" />
       <PasswordInput label value="Password123" appearance="filled" visibility="hidden" />
       <PasswordInput label appearance="disabled" visibility="hidden" />
+      <PasswordInput label appearance="enabled" size="large" visibility="hidden" />
     </View>
   ),
+};
+
+export const Large: Story = {
+  args: passwordInputArgs('enabled', 'large'),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Large size — 16px vertical padding (space[8]). Horizontal padding stays 10px.',
+      },
+    },
+  },
 };
 
 export const Enabled: Story = {

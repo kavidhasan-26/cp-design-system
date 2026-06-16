@@ -46,8 +46,20 @@ export const Overview: Story = {
       <OtpInput label appearance="active" />
       <OtpInput label appearance="filled" value="1234" />
       <OtpInput label appearance="disabled" />
+      <OtpInput label appearance="enabled" size="large" />
     </View>
   ),
+};
+
+export const Large: Story = {
+  args: otpInputArgs('enabled', 'large'),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Large size — 52×52 cells (normal is 46×46). Typography unchanged.',
+      },
+    },
+  },
 };
 
 export const Enabled: Story = {

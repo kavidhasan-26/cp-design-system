@@ -56,8 +56,20 @@ export const Overview: Story = {
       <RadioButton variant="disabled" />
       <RadioButton variant="unselected-plain" />
       <RadioButton variant="selected-plain" />
+      <RadioButton variant="unselected" size="large" />
     </View>
   ),
+};
+
+export const Large: Story = {
+  args: radioButtonArgs('unselected', 'large'),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Large size — 16px vertical padding (space[8]). Horizontal padding unchanged.',
+      },
+    },
+  },
 };
 
 export const Unselected: Story = {

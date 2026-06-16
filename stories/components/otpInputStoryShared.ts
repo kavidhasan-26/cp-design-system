@@ -7,6 +7,7 @@ import {
   figmaBooleanArgType,
   figmaSelectArgType,
   figmaTextArgType,
+  normalLargeSizeOptions,
 } from '../../src/storybook/figmaControls';
 
 const appearanceOptions = [
@@ -28,6 +29,10 @@ export const otpInputArgTypes = createFigmaArgTypes({
     description: 'When true, renders the field label above the OTP cells.',
     defaultValue: true,
   }),
+  labelText: figmaTextArgType('Label text', {
+    description: 'Copy shown in the field label when Label is true.',
+    defaultValue: 'Label',
+  }),
   value: figmaTextArgType('Value', {
     description: 'OTP value used for filled states and controlled usage.',
     defaultValue: '1234',
@@ -44,6 +49,10 @@ export const otpInputArgTypes = createFigmaArgTypes({
     description:
       'Locks the visual appearance for Storybook. Active matches the focused cell in app code — leave unset on Enabled to interact with focus, typing, and the purple border transition.',
     defaultValue: 'enabled',
+  }),
+  size: figmaSelectArgType('Size', normalLargeSizeOptions, {
+    description: 'Normal uses 46×46 cells. Large uses 52×52 cells.',
+    defaultValue: 'normal',
   }),
   fullWidth: figmaBooleanArgType('Full width', {
     description: 'When true, the input stretches to fill the width of its parent container.',
@@ -67,13 +76,18 @@ export const otpInputStoryParameters = {
 
 export const otpInputDecorators = [componentCanvasDecorator()];
 
-export function otpInputArgs(appearance?: OtpInputAppearance) {
+export function otpInputArgs(
+  appearance?: OtpInputAppearance,
+  size: 'normal' | 'large' = 'normal',
+) {
   return {
     label: true,
+    labelText: 'Label',
     value: appearance === 'filled' ? '1234' : '',
     helper: 'none' as const,
     helperText: 'Helper message',
     ...(appearance ? { appearance } : {}),
+    size,
     fullWidth: false,
   };
 }

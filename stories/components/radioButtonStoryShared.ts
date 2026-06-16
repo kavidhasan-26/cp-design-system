@@ -7,6 +7,7 @@ import {
   figmaBooleanArgType,
   figmaSelectArgType,
   figmaTextArgType,
+  normalLargeSizeOptions,
 } from '../../src/storybook/figmaControls';
 
 const variantOptions = [
@@ -26,6 +27,10 @@ export const radioButtonArgTypes = createFigmaArgTypes({
     description:
       'Locks the visual appearance for Storybook. Omit in app code and use selected, bordered, and disabled for live behavior.',
     defaultValue: 'unselected',
+  }),
+  size: figmaSelectArgType('Size', normalLargeSizeOptions, {
+    description: 'Normal uses 12px vertical padding. Large uses 16px (space-8) vertical padding.',
+    defaultValue: 'normal',
   }),
   selected: figmaBooleanArgType('Selected', {
     description: 'Whether the option is selected. Ignored when variant is set.',
@@ -55,10 +60,14 @@ export const radioButtonStoryParameters = {
 
 export const radioButtonDecorators = [componentCanvasDecorator()];
 
-export function radioButtonArgs(variant?: RadioButtonVariant) {
+export function radioButtonArgs(
+  variant?: RadioButtonVariant,
+  size: 'normal' | 'large' = 'normal',
+) {
   return {
     label: 'Label',
     ...(variant ? { variant } : {}),
+    size,
     selected: variant === 'selected' || variant === 'selected-plain',
     bordered: variant !== 'unselected-plain' && variant !== 'selected-plain',
     fullWidth: false,

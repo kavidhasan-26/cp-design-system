@@ -20,6 +20,7 @@ import {
   otpInputSpecs,
   type OtpInputHelper,
   type OtpInputAppearanceValue,
+  type OtpInputSize,
 } from './otpInputStyles';
 import { getWebTextInputStyle } from '../shared/webTextInputStyle';
 
@@ -27,7 +28,10 @@ import { getWebTextInputStyle } from '../shared/webTextInputStyle';
 export type OtpInputAppearance = OtpInputAppearanceValue;
 
 export type OtpInputProps = {
-  label?: boolean | string;
+  /** Figma property: Label — when true, renders the field label above the OTP cells. */
+  label?: boolean;
+  /** Figma property: Label text */
+  labelText?: string;
   helper?: OtpInputHelper;
   helperText?: string;
   /** Number of OTP cells. Defaults to 4 per Figma. */
@@ -35,6 +39,8 @@ export type OtpInputProps = {
   value?: string;
   /** Locks appearance for Storybook. Omit in app code for live focus and typing. */
   appearance?: OtpInputAppearance;
+  /** Figma property: Size — normal (46×46 cells) or large (52×52 cells). */
+  size?: OtpInputSize;
   fullWidth?: boolean;
   disabled?: boolean;
   onChangeText?: (value: string) => void;
@@ -124,11 +130,13 @@ function getBorderAnimationValue(helper: OtpInputHelper, isActiveCell: boolean):
 
 export function OtpInput({
   label = true,
+  labelText = 'Label',
   helper = 'none',
   helperText = 'Helper message',
   length = otpInputSpecs.length,
   value = '',
   appearance,
+  size = 'normal',
   fullWidth = false,
   disabled = false,
   onChangeText,
@@ -143,9 +151,8 @@ export function OtpInput({
   const resolvedValue = sanitizeValue(onChangeText ? value : internalValue, length);
   const normalizedHelper = normalizeHelper(helper);
   const visualState = resolveVisualState(appearance, disabled, focused, resolvedValue, length);
-  const styles = getOtpInputStyles(visualState, normalizedHelper, fullWidth);
+  const styles = getOtpInputStyles(visualState, normalizedHelper, fullWidth, size);
   const isEditable = visualState !== 'disabled';
-  const labelText = typeof label === 'string' ? label : 'Label';
   const activeCellIndex = getActiveCellIndex(appearance, focused, resolvedValue.length, length);
 
   const borderAnims = useRef(Array.from({ length }, () => new Animated.Value(0))).current;
@@ -253,4 +260,4 @@ const componentStyles = StyleSheet.create({
 });
 
 export { getCellBorderColor, getOtpInputStyles, otpInputSpecs };
-export type { OtpInputHelper, OtpInputAppearanceValue };
+export type { OtpInputHelper, OtpInputAppearanceValue, OtpInputSize };

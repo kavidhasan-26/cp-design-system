@@ -8,6 +8,17 @@ import {
   amountDisplayStoryParameters,
 } from './amountDisplayStoryShared';
 
+function LiveAmountDisplay() {
+  return (
+    <AmountDisplay
+      amount={12000}
+      decimals={0}
+      defaultVisible={false}
+      showCurrency
+    />
+  );
+}
+
 const meta = {
   title: 'Components/Amount Display',
   component: AmountDisplay,
@@ -19,7 +30,7 @@ const meta = {
       page: amountDisplayStoryParameters.docs.page,
       description: {
         component:
-          'Privacy-aware amount display with a visibility toggle. Amounts use Indian grouping and roll into place when revealed from the hidden state.',
+          'Amount display with Indian grouping. Use with-toggle for privacy mask and eye control, or without-toggle to always show the amount.',
       },
     },
   },
@@ -44,8 +55,21 @@ export const Overview: Story = {
     <View style={{ gap: 24 }}>
       <AmountDisplay amount={12000} defaultVisible />
       <AmountDisplay amount={12000} />
+      <AmountDisplay amount={12000} size="large" defaultVisible />
+      <AmountDisplay amount={12000} variant="without-toggle" />
     </View>
   ),
+};
+
+export const Large: Story = {
+  args: amountDisplayArgs('visible', 12000, 'with-toggle', false, 'large'),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Large size uses Numeral 1 (40px) for the amount and ₹ symbol.',
+      },
+    },
+  },
 };
 
 export const Hidden: Story = {
@@ -70,14 +94,21 @@ export const Visible: Story = {
   },
 };
 
-export const Interactive: Story = {
-  args: {
-    amount: 12000,
-    decimals: 0,
-    showCurrency: true,
-    defaultVisible: false,
-  },
+export const WithoutToggle: Story = {
+  args: amountDisplayArgs(undefined, 12000, 'without-toggle'),
   parameters: {
+    docs: {
+      description: {
+        story:
+          'Always shows the amount with no eye control. Enable Replay button in controls to re-run the rolling animation.',
+      },
+    },
+  },
+};
+
+export const Interactive: Story = {
+  parameters: {
+    controls: { disable: true },
     docs: {
       description: {
         story:
@@ -85,6 +116,7 @@ export const Interactive: Story = {
       },
     },
   },
+  render: () => <LiveAmountDisplay />,
 };
 
 export const IndianGrouping: Story = {

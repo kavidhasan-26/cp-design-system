@@ -4,13 +4,18 @@ import {
   Easing,
   type Animated as AnimatedNamespace,
 } from 'react-native';
-import { amountDisplaySpecs, getAmountDisplayStyles } from './amountDisplayStyles';
+import {
+  getAmountDisplaySpecs,
+  getAmountDisplayStyles,
+  type AmountDisplaySize,
+} from './amountDisplayStyles';
 import { splitIndianAmountDisplay } from './formatIndianAmount';
 
 type RollingDigitProps = {
   digit: string;
   animate: boolean;
   delay: number;
+  size: AmountDisplaySize;
   slotWidth: AnimatedNamespace.AnimatedInterpolation<number>;
   letterSpacing: AnimatedNamespace.AnimatedInterpolation<number>;
 };
@@ -18,10 +23,11 @@ type RollingDigitProps = {
 const ROLL_CYCLES = 2;
 const DIGIT_COUNT = 10;
 
-function RollingDigit({ digit, animate, delay, slotWidth, letterSpacing }: RollingDigitProps) {
-  const styles = getAmountDisplayStyles();
+function RollingDigit({ digit, animate, delay, size, slotWidth, letterSpacing }: RollingDigitProps) {
+  const specs = getAmountDisplaySpecs(size);
+  const styles = getAmountDisplayStyles(size);
   const targetDigit = Number.parseInt(digit, 10);
-  const lineHeight = amountDisplaySpecs.amountStyle.fontSize ?? 32;
+  const lineHeight = specs.amountStyle.fontSize ?? 32;
   const translateY = useRef(new Animated.Value(-targetDigit * lineHeight)).current;
 
   useEffect(() => {
@@ -33,7 +39,7 @@ function RollingDigit({ digit, animate, delay, slotWidth, letterSpacing }: Rolli
     translateY.setValue(0);
     Animated.timing(translateY, {
       toValue: -(targetDigit + ROLL_CYCLES * DIGIT_COUNT) * lineHeight,
-      duration: amountDisplaySpecs.rollDuration,
+      duration: specs.rollDuration,
       delay,
       easing: Easing.out(Easing.cubic),
       useNativeDriver: true,
@@ -42,7 +48,7 @@ function RollingDigit({ digit, animate, delay, slotWidth, letterSpacing }: Rolli
         translateY.setValue(-targetDigit * lineHeight);
       }
     });
-  }, [animate, delay, lineHeight, targetDigit, translateY]);
+  }, [animate, delay, lineHeight, specs.rollDuration, targetDigit, translateY]);
 
   return (
     <Animated.View style={[styles.digitSlot, { height: lineHeight, width: slotWidth }]}>
@@ -72,33 +78,50 @@ type RollingAmountProps = {
   formattedAmount: string;
   animate: boolean;
   settleProgress: Animated.Value;
+  size?: AmountDisplaySize;
 };
 
-export function RollingAmount({ formattedAmount, animate, settleProgress }: RollingAmountProps) {
-  const styles = getAmountDisplayStyles();
+export function RollingAmount({
+  formattedAmount,
+  animate,
+  settleProgress,
+  size = 'normal',
+}: RollingAmountProps) {
+  const specs = getAmountDisplaySpecs(size);
+  const styles = getAmountDisplayStyles(size);
   const parts = splitIndianAmountDisplay(formattedAmount);
-  const lineHeight = amountDisplaySpecs.amountStyle.fontSize ?? 32;
+  const lineHeight = specs.amountStyle.fontSize ?? 32;
 
   const layout = useMemo(
     () => ({
       digitGap: settleProgress.interpolate({
         inputRange: [0, 1],
-        outputRange: [amountDisplaySpecs.rollDigitGap, amountDisplaySpecs.settledDigitGap],
+        outputRange: [specs.rollDigitGap, specs.settledDigitGap],
       }),
       digitSlotWidth: settleProgress.interpolate({
         inputRange: [0, 1],
-        outputRange: [amountDisplaySpecs.rollDigitSlotWidth, amountDisplaySpecs.settledDigitSlotWidth],
+        outputRange: [specs.rollDigitSlotWidth, specs.settledDigitSlotWidth],
       }),
       letterSpacing: settleProgress.interpolate({
         inputRange: [0, 1],
-        outputRange: [amountDisplaySpecs.rollLetterSpacing, amountDisplaySpecs.settledLetterSpacing],
+        outputRange: [specs.rollLetterSpacing, specs.settledLetterSpacing],
       }),
       separatorWidth: settleProgress.interpolate({
         inputRange: [0, 1],
-        outputRange: [amountDisplaySpecs.rollSeparatorWidth, amountDisplaySpecs.settledSeparatorWidth],
+        outputRange: [specs.rollSeparatorWidth, specs.settledSeparatorWidth],
       }),
     }),
-    [settleProgress],
+    [
+      settleProgress,
+      specs.rollDigitGap,
+      specs.rollDigitSlotWidth,
+      specs.rollLetterSpacing,
+      specs.rollSeparatorWidth,
+      specs.settledDigitGap,
+      specs.settledDigitSlotWidth,
+      specs.settledLetterSpacing,
+      specs.settledSeparatorWidth,
+    ],
   );
 
   let digitIndex = 0;
@@ -131,9 +154,10 @@ export function RollingAmount({ formattedAmount, animate, settleProgress }: Roll
           <RollingDigit
             key={`${index}-${part.value}`}
             animate={animate}
-            delay={currentDigitIndex * amountDisplaySpecs.rollStagger}
+            delay={currentDigitIndex * specs.rollStagger}
             digit={part.value}
             letterSpacing={layout.letterSpacing}
+            size={size}
             slotWidth={layout.digitSlotWidth}
           />
         );

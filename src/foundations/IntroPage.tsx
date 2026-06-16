@@ -13,7 +13,8 @@ const componentProps = [
   },
   {
     name: 'variant',
-    detail: 'Components: RadioButton, ButtonGroup\nPicks the style combination for the component.',
+    detail:
+      'Components: RadioButton, ButtonGroup, AmountDisplay\nRadioButton/ButtonGroup: style combination\nAmountDisplay: with-toggle | without-toggle',
   },
   {
     name: 'appearance',
@@ -22,7 +23,7 @@ const componentProps = [
   },
   {
     name: 'visibility',
-    detail: 'Components: AmountDisplay\nValues: hidden | visible',
+    detail: 'Components: AmountDisplay (with-toggle only)\nValues: hidden | visible',
   },
   {
     name: 'bordered',
@@ -50,7 +51,8 @@ const namingReference = `# Component props
 hierarchy="primary"          # Button, ButtonGroup
 variant="primary-secondary"  # RadioButton, ButtonGroup
 appearance="active"          # Storybook only
-visibility="visible"         # AmountDisplay
+variant="without-toggle"     # AmountDisplay — amount only, no eye control
+visibility="visible"         # AmountDisplay with-toggle only
 bordered                     # RadioButton
 
 # Tokens — Figma names

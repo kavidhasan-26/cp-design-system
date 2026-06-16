@@ -7,6 +7,7 @@ import {
   figmaBooleanArgType,
   figmaSelectArgType,
   figmaTextArgType,
+  normalLargeSizeOptions,
 } from '../../src/storybook/figmaControls';
 
 const appearanceOptions = [
@@ -48,6 +49,10 @@ export const textInputArgTypes = createFigmaArgTypes({
     description: 'When true, renders the field label above the input.',
     defaultValue: true,
   }),
+  labelText: figmaTextArgType('Label text', {
+    description: 'Copy shown in the field label when Label is true.',
+    defaultValue: 'Label',
+  }),
   placeholder: figmaTextArgType('Placeholder', {
     description: 'Placeholder copy shown when the field is empty.',
     defaultValue: 'Placeholder',
@@ -68,6 +73,10 @@ export const textInputArgTypes = createFigmaArgTypes({
     description:
       'Locks the visual appearance for Storybook. Active matches the focused state in app code — leave unset on Enabled to interact with focus, typing, and the purple border transition.',
     defaultValue: 'enabled',
+  }),
+  size: figmaSelectArgType('Size', normalLargeSizeOptions, {
+    description: 'Normal uses 14px vertical padding. Large uses 16px (space-8) vertical padding.',
+    defaultValue: 'normal',
   }),
   iconLeading: figmaBooleanArgType('Leading icon', {
     description: 'When true, renders a leading arrow icon inside the field.',
@@ -109,14 +118,19 @@ export const textInputStoryParameters = {
 
 export const textInputDecorators = [componentCanvasDecorator()];
 
-export function textInputArgs(appearance?: TextInputAppearance) {
+export function textInputArgs(
+  appearance?: TextInputAppearance,
+  size: 'normal' | 'large' = 'normal',
+) {
   return {
     label: true,
+    labelText: 'Label',
     placeholder: 'Placeholder',
     value: appearance === 'filled' ? 'Value' : '',
     helper: 'none' as const,
     helperText: 'Helper message',
     ...(appearance ? { appearance } : {}),
+    size,
     iconLeading: false,
     iconTrailing: false,
     fullWidth: false,
